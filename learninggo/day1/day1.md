@@ -9,6 +9,7 @@
 
 ## Video 1
 - todo 
+- Golang Cơ Bản #01: Module & Package Là Gì?
 
 ## Video 2
 - todo 
