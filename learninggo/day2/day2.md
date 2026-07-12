@@ -1,4 +1,5 @@
-# video 11-20
+# Video 11-20
+
 1. Xem video, thực hành theo và lưu vào day2.go 
 2. Ghi chú lại tất cả những kiến thức gì trong file day1.md
 3. Phải đảm bảo code mẫu trong day2.go giống với video và chạy được không có lỗi 
@@ -6,32 +7,32 @@
 5. Câu hỏi chưa hiểu cần hỏi để làm rõ 
 
 
-## video 11
+## Video 11
 - todo 
 
-## video 12
+## Video 12
 - todo 
 
-## video 13
+## Video 13
 - todo 
 
-## video 14
+## Video 14
 - todo 
 
-## video 15
+## Video 15
 - todo 
 
-## video 16
+## Video 16
 - todo 
 
-## video 17
+## Video 17
 - todo 
 
-## video 18
+## Video 18
 - todo 
 
-## video 19
+## Video 19
 - todo 
 
-## video 20
+## Video 20
 - todo 
