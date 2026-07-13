@@ -17,6 +17,7 @@ git commit -m "Them template learning go"
   git push --set-upstream origin add-template-go
 
 6. Mở github lên https://github.com/oringv/goapp-giahuy
+- Click vào Compare pull request
 - Tạo mới pull requrest (PR)
 - Tạo tiêu đề của PR: vidu Add template learning go
 - Tạo description của PR
@@ -32,3 +33,18 @@ git commit -m "Them template learning go"
 git add .
 git commit -m "Add day3 folder"
 git push 
+
+## Tạo branch mới để học go 
+
+- iểm tra branch hiện tại 
+git branch
+- Phải chuyển về branch master trước khi tạo branch con 
+git checkout master  
+- Kiểm tra branch hiện tại 
+git branch 
+-> Branch hiện tại đang là master
+- Lấy code mới nhất từ github về branch master 
+ git pull
+- Tạo branch mới để học video từ số 1-10
+git checkout -b video-day1
+- Kiểm tra branch hiện tại 
