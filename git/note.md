@@ -25,6 +25,9 @@ git commit -m "Them template learning go"
 - Xem commit đã có chưa 
 - Chọn reviewer cho PR
 
+7. Lệnh git xóa branch
+git branch -D video-day2
+
 ## Sau khi tạo pull requrest (PR1) thành công, tiếp tục commit code mới 
 
 - Ví dụ PR#1: https://github.com/oringv/goapp-giahuy/pull/1
