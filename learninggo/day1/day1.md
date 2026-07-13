@@ -23,6 +23,7 @@ B3: Mở terminal vào đúng thư mục chứa file đó.
 B4: go run tên_file.go.
 
 Trong một module gồm nhiều Package ví dụ package main thì nhiều go gồm func main() để thực thi ra Compiler sau đó hướng đến 1 go để chạ y
+
 ## Video 2
 - todo 
 Tìm Hiểu Các Cách Compile Code Go 
@@ -32,6 +33,7 @@ go mod init	    Xây móng nhà	        Chỉ làm 1 lần lúc mới tạo dự
 go run .	    Chạy thử	            Tìm hàm main trên toàn bộ file và chạy
 go build .	    Chạy ứng dụng	        Chạy với file thực thi được tạo
 go run day1.go  Chạy ứng dụng           Tìm hàm main trên 1 file cụ thể để chạy 
+
 ## Video 3
 - todo 
 Biến ở trong golang
@@ -45,6 +47,7 @@ int: Số nguyên (1, 100, -5).
 float64: Số có dấu phẩy (3.14, 0.5).
 rune: Dùng cho 1 ký tự duy nhất, nhất là chữ có dấu hoặc Emoji.
 byte: Dùng cho dữ liệu máy tính (như file, hình ảnh).
+
 ## Video 4
 - todo 
 Cách Khai Báo Biến và Hằng Số Hiệu Quả Trong Go
@@ -53,6 +56,7 @@ Tên biến không được phép bắt đầu bằng số, không dấu, không
 Có thể khai báo nhiều biến cùng 1 lúc
 Cách 1
 var varialbleName type = value có thể không khai báo kiểu dữ liệu hoặc giá trị 
+
 ## Video 5
 - todo 
 Hiểu Rõ & Dùng Short Variable Declaration (:=) Hiệu Quả
@@ -60,6 +64,7 @@ Kiểu dữ liệu của biến được suy ra từ giá trị (có nghĩa là 
 Luôn phải khai báo giá trị
 Cách 2
 varialbleName := value 
+
 ## Video 6
 - todo 
 Nhập Dữ Liệu Từ Bàn Phím Trong Go – fmt.Scanln & Ứng Dụng 
