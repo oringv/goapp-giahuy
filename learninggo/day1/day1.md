@@ -67,7 +67,7 @@ varialbleName := value
 
 ## Video 6
 - todo 
-Nhập Dữ Liệu Từ Bàn Phím Trong Go – fmt.Scanln & Ứng Dụng 
+
 
 ## Video 7
 - todo 
