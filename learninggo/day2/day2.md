@@ -34,6 +34,8 @@ Package fmt trong Go được xây dựng để nhằm mục đích tương tác
 1. Print, Println, Printf: Hiển thị dữ liệu trực tiếp ra màn hình 
 2. Scan, Scanln, Scanf: Nhập dữ liệu từ bàn phím, yêu cầu con trỏ để gán giá trị 
 3. Sprint, Sprintln, Sprint: Xử lý chuỗi và trả về kết quả (không in ra màn hình, thường dùng để lưu trữ và xử lý tiếp)
+
+CHẠY APP go run .
 ## Video 9
 - todo 
 Gin ?
