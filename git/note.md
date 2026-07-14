@@ -39,7 +39,7 @@ git push
 
 ## Tạo branch mới để học go 
 
-- iểm tra branch hiện tại 
+- Kiểm tra branch hiện tại 
 git branch
 - Phải chuyển về branch master trước khi tạo branch con 
 git checkout master  
@@ -51,3 +51,15 @@ git branch
 - Tạo branch mới để học video từ số 1-10
 git checkout -b video-day1
 - Kiểm tra branch hiện tại 
+
+## Review lại PR 
+Sau khi commit code thành công thì mở link 
+Mở PR lên https://github.com/oringv/goapp-giahuy/
+Vào tab Pull requests để xem cái code mới 
+
+Những mục cần Review:
+ Xem lai tiêu đề của PR
+- Xem lại description của PR
+- Xem commit đã có chưa 
+- Xem đã chon reviewer
+- Xem lại những file changed 

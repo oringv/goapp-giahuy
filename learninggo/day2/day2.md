@@ -1,5 +1,4 @@
-# Video 11-20
-
+# Video 6-10
 1. Xem video, thực hành theo và lưu vào day2.go 
 2. Ghi chú lại tất cả những kiến thức gì trong file day1.md
 3. Phải đảm bảo code mẫu trong day2.go giống với video và chạy được không có lỗi 
@@ -36,6 +35,7 @@ Package fmt trong Go được xây dựng để nhằm mục đích tương tác
 3. Sprint, Sprintln, Sprint: Xử lý chuỗi và trả về kết quả (không in ra màn hình, thường dùng để lưu trữ và xử lý tiếp)
 
 CHẠY APP go run .
+
 ## Video 9
 - todo 
 Gin ?
@@ -44,6 +44,7 @@ Routing: Dễ dàng định nghĩa endpoint (ví dụ: Get/users)
 Middleware: Hỗ trợ xử lý xác thực, logging, CORS, v.v.
 JSON handling: Tự động mã hóa/ gửi JSON(như c.JSON)
 Hiệu nănng: Tối ưu tốc độ, phù hợp chp API quy mô lớn
+
 ## Video 10
 - todo 
 
