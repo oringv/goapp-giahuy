@@ -16,29 +16,56 @@ Package fmt trong Go được xây dựng để nhằm mục đích tương tác
 3. Sprint, Sprintln, Sprint: Xử lý chuỗi và trả về kết quả (không in ra màn hình, thường dùng để lưu trữ và xử lý tiếp)
 
 CHẠY APP go run .
-## Video 22
+
+## Video 9
+- todo 
+Go Formatting Verbs (còn được gọi là Printf Verbs hay Format Specifiers) được sử dụng trong các hàm như fmt.Printf, fmt.Sprintf.. để kiểm soát cách giá trị được định dạng và in ra dưới dạng chuỗi. Chúng hoạt động như những placeholder cho các giá trị mà bạn muốn chèn vào chuỗi kết quả, và đồng thời chỉ định kiểu dữ liệu và định dạng cụ thể cho các giá trị đó 
+
+Một số Formatting Verbs phổ biến:
+%v: Dùng để lấy giá trị của 1 biến.
+%T: Dùng để hiển thị kiểu dữ liệu 1 biến.
+%s: String (Chuỗi).
+%d: Integer (decimal - Số nguyên).
+%.f: Floating-point number (Số thực).
+%t: Boolean (Kiểu đúng/sai).
+%c: Character (rune - Ký tự).
+%p: Pointer (Con trỏ địa chỉ).
+%%: Trường hợp khi cần hiển thị dấu %.
+
+## Video 10
+- todo 
+Toán tử	Mô tả	                      Ví dụ (a=10, b=3)
++	Cộng	                            a + b = 13
+-	Trừ	                                a - b = 7
+*	Nhân	                            a * b = 30
+/	Chia (Lấy phần nguyên nếu là int)	a / b = 3
+%	Chia lấy dư (Modulus)	            a % b = 1
+++	Tăng 1 đơn vị	                    a++ (a thành 11)
+--	Giảm 1 đơn vị	                    a-- (a thành 9)
+
+Bảng 1: Phép so sánh
+Phép toán	  Tên	                      Ví dụ
+==	        Phép bằng	                  x == y
+!=	        Không bằng	                  x != y
+>	        Lớn hơn	                      x > y
+<	        Bé hơn	                      x < y
+>=	        Lớn hơn hoặc bằng	          x >= y
+<=	        Bé hơn hoặc bằng	          x <= y
+
+Bảng 2: Phép luận lý (Logical)
+Phép toán	    Tên	                        Mô tả
+&&	            Và                  Trả về TRUE khi toàn bộ mệnh đề là TRUE
+||		        Hoặc                Trả về TRUE khi chỉ cần 1 mệnh đề là TRUE
+!	            Phủ định            Phủ định mệnh đề (Đúng thành Sai, Sai thành Đúng)
+
+## Video 11
 - todo 
 
-## Video 23
+## Video 12
 - todo 
 
-## Video 24
+## Video 13
 - todo 
 
-## Video 25
-- todo 
-
-## Video 26
-- todo 
-
-## Video 27
-- todo 
-
-## Video 28
-- todo 
-
-## Video 29
-- todo 
-
-## Video 30
+## Video 14
 - todo 
