@@ -1,4 +1,4 @@
-# Video 8-10
+# Video 8-11
 
 1. Xem video, thực hành theo và lưu vào day3.go 
 2. Ghi chú lại tất cả những kiến thức gì trong file day1.md
@@ -9,7 +9,7 @@
 ## Video 8
 - todo 
 - todo 
-Tìm hiểu Package fmt
+Tìm hiểu Package fmt– In, Định Dạng, Nhập/Xuất Dữ Liệu |
 Package fmt trong Go được xây dựng để nhằm mục đích tương tác trực tiếp với dữ liệu như hiển thị dữ liệu, lấy dữ liệu từ bàn phím. Một số hàm trong package fmt hay sử dụng:
 1. Print, Println, Printf: Hiển thị dữ liệu trực tiếp ra màn hình 
 2. Scan, Scanln, Scanf: Nhập dữ liệu từ bàn phím, yêu cầu con trỏ để gán giá trị 
@@ -19,6 +19,7 @@ CHẠY APP go run .
 
 ## Video 9
 - todo 
+Cách Dùng Formatting Verbs Trong fmt - Định Dạng Dữ Liệu
 Go Formatting Verbs (còn được gọi là Printf Verbs hay Format Specifiers) được sử dụng trong các hàm như fmt.Printf, fmt.Sprintf.. để kiểm soát cách giá trị được định dạng và in ra dưới dạng chuỗi. Chúng hoạt động như những placeholder cho các giá trị mà bạn muốn chèn vào chuỗi kết quả, và đồng thời chỉ định kiểu dữ liệu và định dạng cụ thể cho các giá trị đó 
 
 Một số Formatting Verbs phổ biến:
@@ -34,6 +35,7 @@ Một số Formatting Verbs phổ biến:
 
 ## Video 10
 - todo 
+Toán Tử & Phép Gán Trong Go 
 Toán tử	Mô tả	                      Ví dụ (a=10, b=3)
 +	Cộng	                            a + b = 13
 -	Trừ	                                a - b = 7
@@ -43,6 +45,9 @@ Toán tử	Mô tả	                      Ví dụ (a=10, b=3)
 ++	Tăng 1 đơn vị	                    a++ (a thành 11)
 --	Giảm 1 đơn vị	                    a-- (a thành 9)
 
+## Video 11
+- todo 
+Phép So Sánh & Phép Luận Lý 
 Bảng 1: Phép so sánh
 Phép toán	  Tên	                      Ví dụ
 ==	        Phép bằng	                  x == y
@@ -58,14 +63,4 @@ Phép toán	    Tên	                        Mô tả
 ||		        Hoặc                Trả về TRUE khi chỉ cần 1 mệnh đề là TRUE
 !	            Phủ định            Phủ định mệnh đề (Đúng thành Sai, Sai thành Đúng)
 
-## Video 11
-- todo 
 
-## Video 12
-- todo 
-
-## Video 13
-- todo 
-
-## Video 14
-- todo 
