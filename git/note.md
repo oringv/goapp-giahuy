@@ -41,16 +41,31 @@ git push
 
 - Kiểm tra branch hiện tại 
 git branch
+
 - Phải chuyển về branch master trước khi tạo branch con 
 git checkout master  
+
 - Kiểm tra branch hiện tại 
 git branch 
 -> Branch hiện tại đang là master
+
 - Lấy code mới nhất từ github về branch master 
  git pull
+
 - Tạo branch mới để học video từ số 1-10
 git checkout -b video-day1
+
 - Kiểm tra branch hiện tại 
+ git branch
+
+-Lưu file lại git add . 
+
+-Git Commit -m 
+
+-Git push lên
+
+- Sau đó tạo PR 
+
 
 ## Review lại PR 
 Sau khi commit code thành công thì mở link 

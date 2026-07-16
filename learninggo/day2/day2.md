@@ -36,29 +36,3 @@ Package fmt trong Go được xây dựng để nhằm mục đích tương tác
 
 CHẠY APP go run .
 
-## Video 9
-- todo 
-Gin ?
-Gin Framework là một web framework nhẹ và nhanh trong Go (Golang), dùng để xây dựng RESTful API và ứng dụng web. Gin dựa trên net/http, cung cấp cú pháp đơn giản, hiệu năng cao, và các tính năng như:
-Routing: Dễ dàng định nghĩa endpoint (ví dụ: Get/users)
-Middleware: Hỗ trợ xử lý xác thực, logging, CORS, v.v.
-JSON handling: Tự động mã hóa/ gửi JSON(như c.JSON)
-Hiệu nănng: Tối ưu tốc độ, phù hợp chp API quy mô lớn
-
-## Video 10
-- todo 
-
-## Video 16
-- todo 
-
-## Video 17
-- todo 
-
-## Video 18
-- todo 
-
-## Video 19
-- todo 
-
-## Video 20
-- todo 
