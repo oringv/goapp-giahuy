@@ -6,9 +6,15 @@
 4. Viết các lỗi thường gặp, nguyên nhân, cách giải quyết lỗi
 5. Câu hỏi chưa hiểu cần hỏi để làm rõ 
 
+6. git fetch 
+Dùng để cập nhật thông tin 
 ## Video 12
 - todo 
+Cấu Trúc Điều Kiện if/else – Hiểu & Dùng Đúng Cách
 
+Dạng thiếu (Chỉ có if): Chỉ làm nếu đúng, nếu sai thì bỏ qua.
+Dạng đủ (if - else): Đúng làm việc A, sai làm việc B.
+Dạng đa nhánh (if - else if - else): Kiểm tra nhiều điều kiện từ trên xuống dưới, gặp cái nào đúng đầu tiên thì thực hiện cái đó rồi thoát ra.
 ## Video 13
 - todo 
 
