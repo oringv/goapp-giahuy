@@ -1,4 +1,4 @@
-# Video 12-16
+# Video 12-15
 
 1. Xem video, thực hành theo và lưu vào day3.go 
 2. Ghi chú lại tất cả những kiến thức gì trong file day1.md
