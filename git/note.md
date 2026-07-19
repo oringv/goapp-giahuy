@@ -78,3 +78,11 @@ Những mục cần Review:
 - Xem commit đã có chưa 
 - Xem đã chon reviewer
 - Xem lại những file changed 
+
+Khi copy file mới qua sau khi 
+git pull
+fatal: the requested upstream branch 'origin/<branch>' does not exist xuất hiện dòng này ta thực hiện
+git fetch
+- Dùng để cập nhật thông tin
+git pull oringv master
+- Giúp sẵn các thư mục day1 den day5 để tham khảo làm bài mới 
