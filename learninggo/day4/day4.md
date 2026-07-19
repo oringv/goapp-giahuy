@@ -1,4 +1,4 @@
-# Video 12-16
+# Video 12-15
 
 1. Xem video, thực hành theo và lưu vào day3.go 
 2. Ghi chú lại tất cả những kiến thức gì trong file day1.md
@@ -8,6 +8,7 @@
 
 6. git fetch 
 Dùng để cập nhật thông tin 
+
 ## Video 12
 - todo 
 Cấu Trúc Điều Kiện if/else – Hiểu & Dùng Đúng Cách
@@ -46,5 +47,3 @@ break vs continue Trong Go – Làm Chủ Vòng Lặp!
 Break: Dừng và thoát hẳn khỏi vòng lặp ngay lập tức.
 Continue: Bỏ qua phần còn lại của vòng lặp hiện tại để nhảy sang lần lặp kế tiếp.
 
-## Video 16
-- todo 
