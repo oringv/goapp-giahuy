@@ -26,11 +26,3 @@ Hướng Dẫn Giải Bài Tập 03 – Tư Duy & Viết Code Chuẩn!
 Bài 03: Ứng dụng Bảng cửu chương (Input & Validate)
 Yêu cầu: Nhập số bắt đầu và kết thúc. Kiểm tra điều kiện (số đầu < số cuối). In bảng cửu chương.
 
-## Video 1
-- todo
-1. Cấu trúc hàm 
-Hàm là một đoạn mã (một tập hợp các câu lệnh) được viết ra để thực hiện một công việc cụ thể. Thay vì viết lại cùng một đoạn mã nhiều lần, bạn có thể đặt đoạn mã đó vào một hàm và gọi hàm đó bất cứ khi nào cần
-
-func nameFunc (arg1 type, arg2 type) {
-    //**Function content**/
-}
