@@ -1,61 +1,72 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-)
+import "fmt"
 
-var address = "Ho Chi Minh City"
+// func main() {
+/** BAI 19 **/
+// func pheptoan(numb1, numb2 int) int {
+// 	if 	numb2 == 0 {
+// 		numb2 = 5
+// 	}
 
-var (
-	monhoc   string
-	thongtin string
-)
+// 	tong := numb1 + numb2
+
+// 	return tong
+// }
+
+// func main() {
+// 	ketqua := pheptoan(10, 0)
+
+// 	fmt.Println("Day la ket qua cua phep toan", ketqua)
+
+// 	if ketqua >= 10 {
+// 		fmt.Println("Ket qua lon hon hoac bang 10")
+// 	}
+
+// }
+
+/** BAI 20 **/
+
+/** --- ĐỊNH NGHĨA CÁC HÀM (Nằm ngoài hàm main) --- **/
+
+// 1. Hàm tính toán cho bài 20 (Trả về 4 giá trị)
+func pheptoan(numb1, numb2 int) (int, int, int, float32) {
+	// Tránh lỗi chia cho 0
+	if numb2 == 0 {
+		numb2 = 1
+	}
+
+	tong := numb1 + numb2
+	hieu := numb1 - numb2
+	tich := numb1 * numb2
+	thuong := float32(numb1) / float32(numb2)
+
+	return tong, hieu, tich, thuong
+}
+
+// 2. Hàm đếm ngược (Đệ quy)
+func countDown(number int) {
+	fmt.Println(number)
+
+	if number > 0 {
+		countDown(number - 1)
+	}
+}
 
 func main() {
-	//mt.Println("Hello Gia Huy")
-	//randomUser()
+	// 	cong, tru, nhan, chia := pheptoan(10, 0)
 
-	// var fullName = "Pham Thanh Gia Huy"
-	// fullName = "Tony Teo"
-	// fmt.Println(fullName)
+	// 	fmt.Println("Day la ket qua cua phep cong", cong)
+	// 	fmt.Println("Day la ket qua cua phep tru", tru)
+	// 	fmt.Println("Day la ket qua cua phep nhan", nhan)
+	// 	fmt.Println("Day la ket qua cua phep chia", chia)
 
-	// var age int
-	// fmt.Println(age
+	// 	cong, tru, nhan, chia = pheptoan(20, 6)
 
-	// phone := "0123456789"
-	// fmt.Println(phone)
+	// 	fmt.Println("Day la ket qua cua phep cong", cong)
+	// 	fmt.Println("Day la ket qua cua phep tru", tru)
+	// 	fmt.Println("Day la ket qua cua phep nhan", nhan)
+	// 	fmt.Println("Day la ket qua cua phep chia", chia)
+	countDown(20)
 
-	//var toan, tiengviet, tunhien int
-	//toan = 9
-	//tiengviet = 8
-	//tunhien = 7
-	//fmt.Println(toan)
-	//fmt.Println(tiengviet)
-	//fmt.Println(tunhien)
-
-	// toan, tiengviet, tunhien := 9, 8, 7
-	// fmt.Println(toan)
-	// fmt.Println(tiengviet)
-	// fmt.Println(tunhien)
-
-	// monhoc = "Lap trinh golang"
-	// fmt.Println(monhoc)
-
-	// thongtin = "Sinh vien: Gia Huy"
-	// fmt.Println(thongtin)
-
-	// var hoten string
-	// fmt.Println("Nhap ho ten: ")
-	// fmt.Scanln(&hoten)
-	// fmt.Println("Ho ten cua ban la: ", hoten)
-
-	var hoten string
-	fmt.Print("Nhap ho ten:  ")
-	scanner := bufio.NewScanner(os.Stdin)
-	if scanner.Scan() {
-		hoten = scanner.Text()
-	}
-	fmt.Println("Ho ten cua ban la: ", hoten)
 }
