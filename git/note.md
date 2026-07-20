@@ -86,3 +86,18 @@ git fetch
 - Dùng để cập nhật thông tin
 git pull oringv master
 - Giúp sẵn các thư mục day1 den day5 để tham khảo làm bài mới 
+
+
+Bước 1: Kiểm tra xem commit đó đã nằm trong nhánh Day 7 chưa
+Bạn gõ lệnh này:
+git log --oneline -n 5
+Nếu bạn thấy dòng chữ "Golang video 21" ở trên cùng thì yên tâm, code đã được lưu.
+
+Bước 2: "Dọn dẹp" lại nhánh Master
+git checkout master
+Lùi master về 1 bước (Xóa commit lỡ tay):
+git reset --hard HEAD~1
+
+Bước 3: Đẩy code từ nhánh Day 7 lên GitHub
+Quay lại nhánh Day 7:
+git push origin video-day7
