@@ -42,6 +42,7 @@ func fibo(n int) {
 func main() {
 	// Dùng vòng lặp for vô tận để giữ Menu luôn hiện ra
 	for {
+		fmt.Println()
 		fmt.Println("\n-=-=-=-= Menu Chuc Nang-=-=-=-= ")
 		fmt.Println("[1] Tinh tong day so 1 den N")
 		fmt.Println("[2] Hien thi va tinh tong day so Fibonacci")
@@ -52,8 +53,7 @@ func main() {
 		var choice int
 		fmt.Scan(&choice)
 
-		switch choice {
-		case 1:
+		if choice == 1 {
 			var numb int
 			fmt.Print("Nhập số nguyên dương N: ")
 			_, err := fmt.Scan(&numb)
@@ -67,7 +67,8 @@ func main() {
 			result := tong(numb)
 			fmt.Printf("⭐ Kết quả: Tổng từ 1 đến %d là: %d\n", numb, result)
 
-		case 2:
+		} else if choice == 2 {
+
 			var numb int
 			fmt.Print("Nhập số lượng số Fibonacci: ")
 			_, err := fmt.Scan(&numb)
@@ -78,12 +79,14 @@ func main() {
 			}
 			fibo(numb)
 
-		case 0:
+		} else if choice == 0 {
 			fmt.Println("👋 Cam on da su dung chuong trinh. Bye !")
-			return // Thoát hẳn chương trình
-
-		default:
+			break
+		} else {
 			fmt.Println("⚠️ Vui lòng chọn đúng số chức năng (1, 2 hoặc 0)")
 		}
+
 	}
+
+	fmt.Println("Tac gia: Pham Thanh Gia Huy")
 }
