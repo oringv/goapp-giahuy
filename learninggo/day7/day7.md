@@ -24,4 +24,3 @@ Giải Bài Tập 06 – Tổ Chức Code Hiệu Quả Với Menu
 Bài 03: Xây dựng tập hợp chức năng
 - Chuyển toàn bộ bài tập làm  thành function 
 - Xây dựng menu để có thể gọi hàm từ menu 
-

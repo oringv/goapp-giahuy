@@ -46,5 +46,3 @@ break vs continue Trong Go – Làm Chủ Vòng Lặp!
 Break: Dừng và thoát hẳn khỏi vòng lặp ngay lập tức.
 Continue: Bỏ qua phần còn lại của vòng lặp hiện tại để nhảy sang lần lặp kế tiếp.
 
-## Video 16
-- todo 
