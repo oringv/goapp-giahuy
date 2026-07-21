@@ -73,17 +73,24 @@ func main() {
 
 	//** Bài 26**//
 	name := "Pham Thanh Gia Huy"
-	fmt.Println("-=-=-=-=-=Information name variable -=-=-=-=-=")
-	fmt.Printf("Data type: %T \n", name)
-	fmt.Printf("Value: %v \n", name)
-	fmt.Printf("Address: %v \n", name)
+
+	fmt.Println("-=-=-=-=-= Information name variable -=-=-=-=-=")
+	fmt.Printf("Data type: %T \n", name)  // Kiểu dữ liệu
+	fmt.Printf("Value:     %v \n", name)  // Giá trị
+	fmt.Printf("Address:   %v \n", &name) // ĐỊA CHỈ (Phải có dấu &)
 
 	fmt.Println()
 
-	// Tạo con tro (pointer)
-	ptrName := &name
-	fmt.Println("-=-=-=-=-=Information name variable -=-=-=-=-=")
-	fmt.Printf("Data type: %T \n", ptrName)
-	fmt.Printf("Value: %v \n", ptrName)
-	fmt.Printf("Address: %v \n", ptrName)
+	// 2. Tạo con trỏ (Pointer) - Trỏ tới địa chỉ của biến name
+	ptrName2 := &name
+
+	fmt.Println("-=-=-=-=-= Information ptrName variable -=-=-=-=-=")
+	fmt.Printf("Data type: %T \n", ptrName2)  // Sẽ là *string (con trỏ kiểu string)
+	fmt.Printf("Value:     %v \n", ptrName2)  // Giá trị của con trỏ là ĐỊA CHỈ của biến name
+	fmt.Printf("Address:   %v \n", &ptrName2) // Đây là địa chỉ của chính cái con trỏ đó
+
+	// 3. Lấy giá trị từ con trỏ (Dereferencing)
+	// Dùng dấu * trước tên con trỏ để lấy giá trị mà nó đang trỏ tới
+	fmt.Printf("Find value ptrName from ptrName2: %v\n", *ptrName2)
+	fmt.Printf("Find value name from ptrName2: %v\n", *ptrName2)
 }

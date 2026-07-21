@@ -1,4 +1,4 @@
-# Video 24
+# Video 24-
 
 1. Xem video, thực hành theo và lưu vào day1.go 
 2. Ghi chú lại tất cả những kiến thức gì trong file day1.md
@@ -38,3 +38,8 @@ for{
 Tìm Hiểu Con Trỏ (Pointer) Trong Golang – Phần 1! 
 Pointer (con trỏ) trong Go là một biến đặc biệt dùng để lưu trữ địa chỉ bộ nhớ của một biến khác. Nói cách khác, nó trỏ tới nơi mà dữ liệu được lưu trữ trong bộ nhớ.
 Biến lưu giá trị, Con trỏ lưu địa chỉ của biến
+Dùng để lấy giá trị tại địa chỉ mà con trỏ đang trỏ tới
+
+## Video 27
+- todo
+Tìm Hiểu Con Trỏ (Pointer) Trong Golang – Phần 2!
