@@ -8,3 +8,15 @@
 
 ## Video 31
 - todo 
+ Struct Tag Là Gì? Sử Dụng Struct Tag Định Dạng Dữ Liệu
+
+## Video 32
+- todo 
+ Giải Bài Tập 07 – Chu Vi & Diện Tích Hình Chữ Nhật (P1)
+ Bài 01: Xây dựng chức năng tính diện tích và chu vi hình chữ nhật
+ - Áp dụng các kiến thức đã học về Struct
+ - Kiểm tra giữ liệu đầu vào
+
+## Video 33
+- todo 
+Giải Bài Tập 07 – Chu Vi & Diện Tích Hình Chữ Nhật (P2) 
