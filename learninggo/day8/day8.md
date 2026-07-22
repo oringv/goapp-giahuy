@@ -8,6 +8,7 @@
 
 ## Video 24
 - todo
+return vs break vs continue – Dùng Khi Nào? 
 Continue: Bỏ qua lượt này 
  làm tiếp lượt sau.
 Break: Dừng vòng lặp 
