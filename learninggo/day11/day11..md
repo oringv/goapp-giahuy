@@ -8,3 +8,19 @@
 
 ## Video 34
 - todo 
+Khai Báo Interface – Tại Sao Cần Dùng Interface?
+Interface là một tập hợp các phương thức (methods) mà một kiểu dữ liệu phải triển khai.
+
+## Video 35
+- todo 
+Ứng Dụng Interface - Tích Hợp Interface Vào Code Go
+
+## Video 36
+- todo 
+Cách Quản Lý Interface Hiệu Quả Trong Golang
+
+## Video 37
+- todo 
+ Tìm Hiểu Empty Interface – Khi Nào Nên Dùng?
+ - Empty Interface (interface{}) là một Interface không có phương thức nào.
+ - Nó có thể chứa bất kỳ giá trị nào, tương tự như kiểu Object trong các ngôn ngữ khác.
