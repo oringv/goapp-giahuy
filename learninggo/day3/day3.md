@@ -8,7 +8,6 @@
 
 ## Video 8
 - todo 
-- todo 
 Tìm hiểu Package fmt– In, Định Dạng, Nhập/Xuất Dữ Liệu |
 Package fmt trong Go được xây dựng để nhằm mục đích tương tác trực tiếp với dữ liệu như hiển thị dữ liệu, lấy dữ liệu từ bàn phím. Một số hàm trong package fmt hay sử dụng:
 1. Print, Println, Printf: Hiển thị dữ liệu trực tiếp ra màn hình 
