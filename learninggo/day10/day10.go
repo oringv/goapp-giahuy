@@ -55,75 +55,82 @@ package main
 // 	giahuy.hienThiThongTin() // Sẽ in ra trắng trơn
 // }
 
-import "fmt"
+//** Bài 33 **//
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
 
 // 1. Định nghĩa Struct
 type Hinhchunhat struct {
-	// LƯU Ý: Phải dùng dấu huyền ` ` cho Struct Tag
-	Chieudai  float32 `desc:"Chieu dai hinh chu nhat"`
-	Chieurong float32 `desc:"Chieu rong hinh chu nhat"`
+	Chieudai  float32
+	Chieurong float32
 }
 
-// 2. Phương thức tính Chu vi
-// Công thức: (dài + rộng) * 2
+// 2. Các Method tính toán
 func (hcn *Hinhchunhat) chuvi() float32 {
 	return (hcn.Chieudai + hcn.Chieurong) * 2
 }
 
-// 3. Phương thức tính Diện tích
-// Công thức: dài * rộng
 func (hcn *Hinhchunhat) dientich() float32 {
 	return hcn.Chieudai * hcn.Chieurong
 }
 
+// 3. Hàm bổ trợ: Đọc dữ liệu từ bàn phím và chuyển sang số thực
+func readFloat(prompt string) (float32, error) {
+	fmt.Print(prompt)
+	reader := bufio.NewReader(os.Stdin)
+	input, _ := reader.ReadString('\n')
+	input = strings.TrimSpace(input) // Loại bỏ dấu xuống dòng và khoảng trắng
+
+	value, err := strconv.ParseFloat(input, 32)
+	if err != nil {
+		return 0, err
+	}
+	return float32(value), nil
+}
+
+// 4. Hàm xử lý nhập liệu cho Hình Chữ Nhật (Có vòng lặp kiểm tra)
+func inputHinhChuNhat() Hinhchunhat {
+	var hcn Hinhchunhat
+
+	// Vòng lặp cho Chiều Rộng
+	for {
+		val, err := readFloat("Vui long nhap kich thuoc chieu rong hinh chu nhat: ")
+		if err != nil || val <= 0 {
+			fmt.Println("⛔ Kich thuoc chieu rong phai lon hon 0")
+			continue
+		}
+		hcn.Chieurong = val
+		break
+	}
+
+	// Vòng lặp cho Chiều Dài
+	for {
+		val, err := readFloat("Vui long nhap kich thuoc chieu dai hinh chu nhat: ")
+		if err != nil || val <= 0 {
+			fmt.Println("⛔ Kich thuoc chieu dai phai lon hon 0")
+			continue
+		}
+		hcn.Chieudai = val
+		break
+	}
+
+	return hcn
+}
+
 func main() {
-	// Khởi tạo đối tượng
-	// 	hinhchunhat := Hinhchunhat{
-	// 		Chieudai:  20,
-	// 		Chieurong: 5,
-	// 	}
+	fmt.Println("=== CHUONG TRINH QUAN LY HINH CHU NHAT ===")
 
-	// 	// In kết quả với định dạng 2 chữ số thập phân (%.2f)
-	// 	fmt.Printf("Kich thuoc chu vi hinh chu nhat: %.2f \n", hinhchunhat.chuvi())
-	// 	fmt.Printf("Kich thuoc dien tich hinh chu nhat: %.2f \n", hinhchunhat.dientich())
-	// }
+	// Gọi hàm nhập liệu
+	hcn := inputHinhChuNhat()
 
-	var hinhchunhat Hinhchunhat
-
-	// --- NHẬP CHIỀU RỘNG ---
-	for {
-		fmt.Print("Vui long nhap kich thuoc chieu rong: ")
-		_, err := fmt.Scan(&hinhchunhat.Chieurong) // Dùng Scan cho ổn định
-
-		// SỬA LOGIC: err == nil (không lỗi) VÀ giá trị > 0 thì mới thoát (break)
-		if err == nil && hinhchunhat.Chieurong > 0 {
-			break
-		}
-
-		// Nếu sai thì thông báo và bắt nhập lại
-		fmt.Println("❌ Loi: Kich thuoc chieu rong phai la so và lon hon 0!")
-
-		// Xóa bộ nhớ đệm đề phòng người dùng nhập chữ
-		var discard string
-		fmt.Scanln(&discard)
-	}
-
-	// --- NHẬP CHIỀU DÀI ---
-	for {
-		fmt.Print("Vui long nhap kich thuoc chieu dai: ")
-		_, err := fmt.Scan(&hinhchunhat.Chieudai)
-
-		// SỬA LOGIC: err == nil VÀ dài > 0 thì mới thoát
-		if err == nil && hinhchunhat.Chieudai > 0 {
-			break
-		}
-
-		fmt.Println("❌ Loi: Kich thuoc chieu dai phai la so và lon hon 0!")
-		var discard string
-		fmt.Scanln(&discard)
-	}
-
-	fmt.Println("\n--- KẾT QUẢ ---")
-	fmt.Printf("Kich thuoc chu vi hinh chu nhat: %.2f \n", hinhchunhat.chuvi())
-	fmt.Printf("Kich thuoc dien tich hinh chu nhat: %.2f \n", hinhchunhat.dientich())
+	// Hiển thị kết quả
+	fmt.Println("\n--- KET QUA ---")
+	fmt.Printf("Kich thuoc chu vi hinh chu nhat: %.2f \n", hcn.chuvi())
+	fmt.Printf("Kich thuoc dien tich hinh chu nhat: %.2f \n", hcn.dientich())
 }
