@@ -49,6 +49,9 @@ git checkout master
 git branch 
 -> Branch hiện tại đang là master
 
+- Tạo git pull trước nhánh con thì sử dụng 
+git pull origin master (Để lấy code toàn bộ về rồi tạo lại nhánh con)
+
 - Lấy code mới nhất từ github về branch master 
  git pull
 
