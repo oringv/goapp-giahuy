@@ -35,4 +35,34 @@ Tạo và sử dụng struct với Generic
  Array trong Golang là một tập hợp các giá trị( phần tử ) có cùng kiểu dữ liệu, với kích thước cố định.
  Khi một Array được khai báo, kích thước của nó không thể thay đổi
 
- 
+## Video 44
+- todo 
+ Hiểu Và Áp Dụng Mảng Đa Chiều (Multidimensional Array)
+ 📌 Nội dung chính:
+ Mảng đa chiều là gì?
+ Cách khai báo và sử dụng mảng đa chiều trong Golang
+ Truy xuất phần tử trong mảng đa chiều
+ Thay đổi giá trị trong mảng đa chiều
+
+## Video 45
+- todo 
+ Cách Sử Dụng for range Để Duyệt Mảng Nhanh Chóng
+ Cách khai báo và truy xuất phần tử trong mảng
+ Duyệt mảng bằng vòng lặp for thông thường   
+ Sử dụng len() để lấy độ dài của mảng
+ Duyệt mảng đa chiều với vòng lặp lồng nhau
+ Cách dùng for range để duyệt mảng một cách hiệu quả
+
+## Video 46
+- todo 
+  Kết Hợp Struct & Array – Cách Quản Lý Dữ Liệu Tốt Nhất 
+    Struct trong Golang là gì?
+    Cách khai báo và sử dụng struct
+    Cách tạo mảng (slice) chứa struct
+    Truy xuất và lặp qua dữ liệu trong struct
+    Ứng dụng thực tế với ví dụ cụ thể
+
+## Video 47
+- todo 
+So Sánh Slice Và Array Trong Golang
+Slice là một tập hợp các giá trị (phần từ) có cùng kiểu dữ liệu nhưng kích thước có thể thay đổi linh hoạt
