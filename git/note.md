@@ -104,3 +104,6 @@ git reset --hard HEAD~1
 Bước 3: Đẩy code từ nhánh Day 7 lên GitHub
 Quay lại nhánh Day 7:
 git push origin video-day7
+
+- Ví dụ như tạo nhánh con trước mà github chưa có nhánh con nào thì sử dụng để tạo PR lên
+git push --set-upstream origin video-day12

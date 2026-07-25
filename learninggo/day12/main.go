@@ -1,18 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
-func main() { // Sửa từ mainday12 thành main
-
+func main() {
 	// 1. Khởi tạo slice rỗng
 	var numbers []int
-	fmt.Println(numbers) // Kết quả in ra: []
+	fmt.Println("Numbers (slice rỗng):", numbers)
 
-	// 2. Khởi tạo slice có giá trị
+	// 2. Khởi tạo slice
 	slice := []int{1, 2, 3, 4, 5}
-	fmt.Println(slice) // Kết quả in ra: [1 2 3 4 5]
+	fmt.Println("Slice:", slice)
 
-	// 3. Khởi tạo array có giá trị
+	// 3. Khởi tạo array
 	array := [5]int{1, 2, 3, 4, 5}
-	fmt.Println(array) // Kết quả in ra: [1 2 3 4 5]
+	fmt.Println("Array:", array)
+
+	// --- PHẦN KIỂM TRA BẢN CHẤT (SỬA LỖI Ở ĐÂY) ---
+	// Dùng reflect.TypeOf(biến).Kind()
+	fmt.Println("slice có phải là Slice không?", reflect.TypeOf(slice).Kind() == reflect.Slice)
+	fmt.Println("array có phải là Array không?", reflect.TypeOf(array).Kind() == reflect.Array)
 }

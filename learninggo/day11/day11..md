@@ -43,5 +43,3 @@ Golang sử dụng cú pháp đơn giản để định nghĩa Generic:
 Type Parameters: Định nghĩa các kiểu dữ liệu tổng quát.
 Type Constraints: Giới hạn các kiểu dữ liệu có thể sử dụng (any, comparable, Interface và constraints)
 
-## Video 40
-Cách Dùng Generics với Comparable & CmpOrdered
