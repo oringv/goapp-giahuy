@@ -8,3 +8,25 @@
 
 ## Video 48
 - todo 
+Những Cách Khởi Tạo Slice Trong Golang
+Cách tạo slice từ array
+Chỉ mục trong slice (start, end)
+Cách kiểm tra slice và array
+Dùng make để khởi tạo slice
+
+## Video 49
+- todo 
+Cách Sử Dụng append() Với Slice Hiệu Quả
+Cách duyệt slice trong Golang
+Sử dụng vòng lặp for và range với slice
+Làm việc với slice lồng nhau (nested slices)
+Thêm phần tử vào slice với append
+
+## Video 49
+- todo 
+ Subslice – Hiểu Rõ Cách Hoạt Động Của cap() Và len() 
+ Tạo sub slice là tạo ra 1 slice con từ 1 slice cha (slice ban đầu)
+ Subslice là gì?
+    Cách tạo subslice từ một slice gốc
+    Cách hoạt động của chỉ số trong subslice
+    Ảnh hưởng của len() và cap() khi tạo subslice
