@@ -49,6 +49,9 @@ git checkout master
 git branch 
 -> Branch hiện tại đang là master
 
+- Tạo git pull trước nhánh con thì sử dụng 
+git pull origin master (Để lấy code toàn bộ về rồi tạo lại nhánh con)
+
 - Lấy code mới nhất từ github về branch master 
  git pull
 
@@ -101,3 +104,6 @@ git reset --hard HEAD~1
 Bước 3: Đẩy code từ nhánh Day 7 lên GitHub
 Quay lại nhánh Day 7:
 git push origin video-day7
+
+- Ví dụ như tạo nhánh con trước mà github chưa có nhánh con nào thì sử dụng để tạo PR lên
+git push --set-upstream origin video-day12
