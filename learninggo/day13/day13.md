@@ -22,7 +22,7 @@ Sử dụng vòng lặp for và range với slice
 Làm việc với slice lồng nhau (nested slices)
 Thêm phần tử vào slice với append
 
-## Video 49
+## Video 50
 - todo 
  Subslice – Hiểu Rõ Cách Hoạt Động Của cap() Và len() 
  Tạo sub slice là tạo ra 1 slice con từ 1 slice cha (slice ban đầu)
@@ -30,3 +30,45 @@ Thêm phần tử vào slice với append
     Cách tạo subslice từ một slice gốc
     Cách hoạt động của chỉ số trong subslice
     Ảnh hưởng của len() và cap() khi tạo subslice
+
+## Video 51
+- todo 
+ Những Hàm Xử Lý Với Slice Quan Trọng Trong Golang    
+  Giới thiệu về Slice và sự khác biệt với Array
+   Cách sử dụng package slices (Go 1.21+)
+   Các hàm quan trọng: Clone(), Equal(), Index(), Contains(), Insert(), Delete(), Reverse(), Sort()
+   Thực hành viết code xử lý Slice trong Golang
+
+## Video 52
+- todo
+   Demo Bài tập Quản lý sinh viên và giảng viên
+   Ôn tập kiến thức về Array và Slice trong Golang
+   Demo xây dựng chương trình quản lý sinh viên & giảng viên
+   Thêm, xóa, sửa, tìm kiếm và hiển thị danh sách sinh viên/giảng viên
+   Ứng dụng thực tế của Array và Slice trong lập trình Golang
+
+## Video 53
+- todo
+   Bài tập xây dựng Main Menu cho dự án
+   Tạo project quản lý sinh viên & giảng viên
+   Thiết kế menu chính với các chức năng
+   Xử lý input từ bàn phím với Bufio và kiểm tra dữ liệu hợp lệ
+   Clear màn hình trên macOS và Windows
+   Gợi ý xây dựng package cho sinh viên và giảng viên
+
+## Video 54
+- todo
+   Bài tập xây dựng menu cho sinh viên và giảng viên
+   Tạo menu quản lý sinh viên với các chức năng: thêm, xóa, sửa, danh sách, tìm kiếm
+   Tạo menu quản lý giảng viên tương tự sinh viên
+   Tích hợp menu sinh viên và giảng viên vào menu chính
+   Xử lý input và quay lại menu chính với clear screen
+
+## Video 54
+- todo
+   Bài tập Xây dựng chức năng Thêm sinh viên
+   Tạo struct Student với các trường ID, tên, lớp, điểm
+   Xây dựng chức năng thêm sinh viên với kiểm tra input hợp lệ
+   Sử dụng slice để lưu trữ nhiều sinh viên
+   Hiển thị danh sách sinh viên với vòng lặp và kiểm tra rỗng
+   Ôn tập append slice và duyệt slice trong Golang
