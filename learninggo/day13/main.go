@@ -1,35 +1,58 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"goapp-giahuy/learninggo/day13/student"
-	"goapp-giahuy/learninggo/day13/teacher"
-	"goapp-giahuy/learninggo/day13/utils"
 	"os"
+	"os/exec"
+	"runtime"
+	"strconv"
+	"strings"
 )
 
-func main() {
-	for {
-		utils.ClearScreen()
-		fmt.Println("======== 📚 HỆ THỐNG QUẢN LÝ ========")
-		fmt.Println("1. Quản lý Sinh viên")
-		fmt.Println("2. Quản lý Giảng viên")
-		fmt.Println("3. Thoát chương trình")
-		fmt.Println("====================================")
+var Reader = bufio.NewReader(os.Stdin)
 
-		choice := utils.GetPositiveInt("👉 Chọn chức năng: ")
-
-		switch choice {
-		case 1:
-			student.SubMenu()
-		case 2:
-			teacher.MenuQuanLyGiangVien()
-		case 3:
-			fmt.Println("👋 Tạm biệt! Tác giả: Gia Huy")
-			os.Exit(0)
-		default:
-			fmt.Println("⚠️ Lựa chọn không hợp lệ!")
-			utils.ReadInput("\nNhấn Enter để chọn lại...")
-		}
+// Phải viết hoa chữ C để các file khác thấy được
+func ClearScreen() {
+	if runtime.GOOS == "windows" {
+		cmd := exec.Command("cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	} else {
+		fmt.Print("\033[H\033[2J")
 	}
 }
+
+// Phải viết hoa chữ R
+func ReadInput(prompt string) string {
+	fmt.Print(prompt)
+	input, _ := Reader.ReadString('\n')
+	return strings.TrimSpace(input)
+}
+
+// Phải viết hoa chữ G
+func GetPositiveInt(prompt string) int {
+	for {
+		input := ReadInput(prompt)
+		val, err := strconv.Atoi(input)
+		if err == nil && val >= 0 {
+			return val
+		}
+		fmt.Println("❌ Lỗi: Vui lòng nhập số nguyên dương!")
+	}
+}
+
+func GetPositiveFloat(prompt string) float64 {
+	for {
+		input := ReadInput(prompt)
+		val, err := strconv.ParseFloat(input, 64)
+		if err == nil && val >= 0 {
+			return val
+		}
+		fmt.Println("❌ Lỗi: Vui lòng nhập số dương!")
+	}
+}
+
+// Hai hàm này để hỗ trợ nếu code cũ của bạn vẫn dùng tên cũ
+func ReadInt(p string) int       { return GetPositiveInt(p) }
+func ReadString(p string) string { return ReadInput(p) }

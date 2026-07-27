@@ -12,11 +12,10 @@ import (
 
 var Reader = bufio.NewReader(os.Stdin)
 
+// VIẾT HOA chữ cái đầu để các package khác có thể gọi được
 func ClearScreen() {
 	if runtime.GOOS == "windows" {
-		cmd := exec.Command("cls")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
+		exec.Command("cls").Run()
 	} else {
 		fmt.Print("\033[H\033[2J")
 	}
@@ -49,7 +48,3 @@ func GetPositiveFloat(prompt string) float64 {
 		fmt.Println("❌ Lỗi: Vui lòng nhập số dương!")
 	}
 }
-
-// Các hàm bổ trợ để không bị lỗi code cũ
-func ReadInt(p string) int       { return GetPositiveInt(p) }
-func ReadString(p string) string { return ReadInput(p) }
