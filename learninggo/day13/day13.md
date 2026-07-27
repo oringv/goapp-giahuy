@@ -64,7 +64,7 @@ Thêm phần tử vào slice với append
    Tích hợp menu sinh viên và giảng viên vào menu chính
    Xử lý input và quay lại menu chính với clear screen
 
-## Video 54
+## Video 55
 - todo
    Bài tập Xây dựng chức năng Thêm sinh viên
    Tạo struct Student với các trường ID, tên, lớp, điểm
@@ -72,3 +72,21 @@ Thêm phần tử vào slice với append
    Sử dụng slice để lưu trữ nhiều sinh viên
    Hiển thị danh sách sinh viên với vòng lặp và kiểm tra rỗng
    Ôn tập append slice và duyệt slice trong Golang
+
+ ## Video 56
+- todo  
+Tạo hàm GetInfo với receiver để hiển thị thông tin sinh viên
+ Tính điểm trung bình cho sinh viên với hàm CalculateAverageScore
+ Xây dựng struct và chức năng thêm giảng viên tương tự sinh viên
+ Tạo hàm GetInfo và CalculateSalary cho giảng viên
+ Hiển thị danh sách sinh viên và giảng viên với định dạng dễ đọc
+
+
+## Video 57
+- todo
+Bài tập Xây dựng chức năng xử lý tránh duplicate id
+Kiểm tra trùng ID khi thêm sinh viên và giảng viên
+ Tạo hàm GetID và IsIDUnique cho struct Student
+ Áp dụng tương tự cho struct Teacher
+ Tối ưu code bằng generic function để tránh lặp code
+ Xử lý lỗi vòng lặp package trong Golang

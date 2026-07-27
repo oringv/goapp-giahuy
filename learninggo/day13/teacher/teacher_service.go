@@ -2,93 +2,111 @@ package teacher
 
 import (
 	"fmt"
-	"goapp-giahuy/learninggo/day13/utils" // Nhập gói utils dùng chung
-	"strings"                             // Cần thiết để tạo đường kẻ ngang
+	"goapp-giahuy/learninggo/day13/utils"
+	"strings"
 )
 
-// GiangVien đại diện cho một giảng viên
-type GiangVien struct {
-	ID          int
-	Ten         string
-	MonGiangDay string
-	LuongCoBan  int
-	Thuong      int
-}
+var DanhSachGiangVien []Teacher // Lưu ý: Dùng đúng kiểu dữ liệu Teacher
 
-// DanhSachGiangVien là danh sách giảng viên toàn cục
-var DanhSachGiangVien []GiangVien
-
-// MenuQuanLyGiangVien chứa vòng lặp cho menu quản lý giảng viên
 func MenuQuanLyGiangVien() {
 	for {
 		utils.ClearScreen()
-		fmt.Println("==== QUẢN LÝ GIẢNG VIÊN ====")
-		fmt.Println("1. Them giang vien")
-		fmt.Println("2. Xoa giang vien")
-		fmt.Println("3. Sua giang vien")
-		fmt.Println("4. Danh sach giang vien")
-		fmt.Println("5. Tim kiem giang vien")
-		fmt.Println("6. Quay lai")
+		fmt.Println("==== 👨‍🏫 QUẢN LÝ GIẢNG VIÊN ====")
+		fmt.Println("1. Thêm giảng viên")
+		fmt.Println("2. Xóa giảng viên")
+		fmt.Println("3. Sửa giảng viên")
+		fmt.Println("4. Danh sách giảng viên")
+		fmt.Println("5. Tìm kiếm giảng viên")
+		fmt.Println("6. Quay lại Menu chính")
 
-		choice := utils.ReadInt("👉 Chon chuc nang: ")
+		choice := utils.GetPositiveInt("👉 Chọn chức năng: ")
 
 		switch choice {
 		case 1:
 			handleThemGiangVien()
 		case 2:
-			fmt.Println("Chức năng Xóa giảng viên chưa được triển khai.")
+			handleXoaGiangVien()
 		case 3:
-			fmt.Println("Chức năng Sửa giảng viên chưa được triển khai.")
+			handleSuaGiangVien()
 		case 4:
 			handleHienThiDanhSach()
 		case 5:
-			fmt.Println("Chức năng Tìm kiếm giảng viên chưa được triển khai.")
+			handleTimKiemGiangVien()
 		case 6:
-			return // Thoát khỏi menu
-		default:
-			fmt.Println("❌ Lựa chọn không hợp lệ. Vui lòng thử lại.")
+			return
 		}
-		utils.ReadString("\nNhan phim Enter de tiep tuc...")
+		utils.ReadInput("\nNhấn Enter để tiếp tục...")
 	}
 }
 
 func handleThemGiangVien() {
 	utils.ClearScreen()
-	fmt.Println("-=-=-=-=-=- Them Giang Vien -=-=-=-=-=-")
+	fmt.Println("-=-=-=-=-=- Thêm Giảng Viên -=-=-=-=-=-")
 
-	id := utils.ReadInt("- Nhap ID: ")
-	ten := utils.ReadString("- Nhap ten: ")
-	monGiangDay := utils.ReadString("- Nhap mon giang day: ")
-	luongCoBan := utils.ReadInt("- Nhap luong co ban: ")
-	thuong := utils.ReadInt("- Nhap thuong: ")
-
-	gvMoi := GiangVien{
-		ID:          id,
-		Ten:         ten,
-		MonGiangDay: monGiangDay,
-		LuongCoBan:  luongCoBan,
-		Thuong:      thuong,
+	var id int
+	for {
+		id = utils.GetPositiveInt("- Nhập ID: ")
+		if IsIdUniqueTeacher(id, DanhSachGiangVien) {
+			break
+		}
+		fmt.Println("❌ ID đã tồn tại! Vui lòng nhập ID khác.")
 	}
 
-	DanhSachGiangVien = append(DanhSachGiangVien, gvMoi)
-	fmt.Println("✅ Them giang vien thanh cong!")
+	// ✅ ĐÃ FIX: Toàn bộ phần này phải nằm TRONG hàm handleThemGiangVien
+	name := utils.ReadInput("- Nhập tên: ")
+	sub := utils.ReadInput("- Nhập môn giảng dạy: ")
+	luong := utils.GetPositiveInt("- Nhập lương cơ bản: ")
+	thuong := utils.GetPositiveInt("- Nhập thưởng: ")
+
+	DanhSachGiangVien = append(DanhSachGiangVien, Teacher{
+		Id: id, Name: name, Subject: sub, BaseSalary: luong, Bonus: thuong,
+	})
+	fmt.Println("✅ Thêm giảng viên thành công!")
 }
 
 func handleHienThiDanhSach() {
 	utils.ClearScreen()
-	fmt.Println("-=-=-=-=-=- Danh Sach Giang Vien -=-=-=-=-=-")
+	fmt.Println("-=-=-=-=-=- Danh Sách Giảng Viên -=-=-=-=-=-")
 	if len(DanhSachGiangVien) == 0 {
-		fmt.Println("📭 Danh sách giảng viên trống.")
-	} else {
-		// Định dạng hiển thị cho đẹp bằng Printf giống như trong hình
-		headerFmt := "%-5s | %-20s | %-15s | %-12s | %-12s\n"
-		rowFmt := "%-5d | %-20s | %-15s | %-12d | %-12d\n"
+		fmt.Println("📭 Danh sách đang trống.")
+		return
+	}
+	fmt.Printf("%-5s | %-20s | %-15s | %-10s\n", "ID", "Tên", "Môn Dạy", "Lương")
+	fmt.Println(strings.Repeat("-", 60))
+	for _, gv := range DanhSachGiangVien {
+		fmt.Printf("%-5d | %-20s | %-15s | %-10d\n", gv.Id, gv.Name, gv.Subject, gv.BaseSalary+gv.Bonus)
+	}
+}
 
-		fmt.Printf(headerFmt, "ID", "Ten", "Mon Giang Day", "Luong CB", "Thuong")
-		fmt.Println(strings.Repeat("-", 75))
+func handleXoaGiangVien() {
+	id := utils.GetPositiveInt("Nhập ID cần xóa: ")
+	for i, gv := range DanhSachGiangVien {
+		if gv.Id == id {
+			DanhSachGiangVien = append(DanhSachGiangVien[:i], DanhSachGiangVien[i+1:]...)
+			fmt.Println("✅ Đã xóa!")
+			return
+		}
+	}
+	fmt.Println("❌ Không tìm thấy ID.")
+}
 
-		for _, gv := range DanhSachGiangVien {
-			fmt.Printf(rowFmt, gv.ID, gv.Ten, gv.MonGiangDay, gv.LuongCoBan, gv.Thuong)
+func handleSuaGiangVien() {
+	id := utils.GetPositiveInt("Nhập ID cần sửa: ")
+	for i := range DanhSachGiangVien {
+		if DanhSachGiangVien[i].Id == id {
+			DanhSachGiangVien[i].Name = utils.ReadInput("Tên mới: ")
+			DanhSachGiangVien[i].Subject = utils.ReadInput("Môn mới: ")
+			fmt.Println("✅ Đã cập nhật!")
+			return
+		}
+	}
+}
+
+func handleTimKiemGiangVien() {
+	ten := utils.ReadInput("Nhập tên cần tìm: ")
+	for _, gv := range DanhSachGiangVien {
+		if strings.Contains(strings.ToLower(gv.Name), strings.ToLower(ten)) {
+			fmt.Printf("ID: %d | Tên: %s | Môn: %s\n", gv.Id, gv.Name, gv.Subject)
 		}
 	}
 }

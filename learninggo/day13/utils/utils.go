@@ -4,32 +4,52 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
 )
 
-// ClearScreen xóa màn hình console (hoạt động trên Linux/macOS và Windows terminal hiện đại)
+var Reader = bufio.NewReader(os.Stdin)
+
 func ClearScreen() {
-	// Đây là mã ANSI escape sequence để xóa màn hình.
-	fmt.Print("\033[H\033[2J")
-}
-
-// ReadString đọc một chuỗi từ đầu vào chuẩn, cắt bỏ ký tự xuống dòng thừa
-func ReadString(prompt string) string {
-	fmt.Print(prompt)
-	reader := bufio.NewReader(os.Stdin)
-	text, _ := reader.ReadString('\n')
-	return strings.TrimSpace(text)
-}
-
-// ReadInt đọc một số nguyên từ đầu vào chuẩn, xử lý lỗi nhập không phải số
-func ReadInt(prompt string) int {
-	for {
-		s := ReadString(prompt)
-		i, err := strconv.Atoi(s)
-		if err == nil {
-			return i
-		}
-		fmt.Println("❌ Giá trị không hợp lệ, vui lòng nhập số nguyên.")
+	if runtime.GOOS == "windows" {
+		cmd := exec.Command("cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	} else {
+		fmt.Print("\033[H\033[2J")
 	}
 }
+
+func ReadInput(prompt string) string {
+	fmt.Print(prompt)
+	input, _ := Reader.ReadString('\n')
+	return strings.TrimSpace(input)
+}
+
+func GetPositiveInt(prompt string) int {
+	for {
+		input := ReadInput(prompt)
+		val, err := strconv.Atoi(input)
+		if err == nil && val >= 0 {
+			return val
+		}
+		fmt.Println("❌ Lỗi: Vui lòng nhập số nguyên dương!")
+	}
+}
+
+func GetPositiveFloat(prompt string) float64 {
+	for {
+		input := ReadInput(prompt)
+		val, err := strconv.ParseFloat(input, 64)
+		if err == nil && val >= 0 {
+			return val
+		}
+		fmt.Println("❌ Lỗi: Vui lòng nhập số dương!")
+	}
+}
+
+// Các hàm bổ trợ để không bị lỗi code cũ
+func ReadInt(p string) int       { return GetPositiveInt(p) }
+func ReadString(p string) string { return ReadInput(p) }

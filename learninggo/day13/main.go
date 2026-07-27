@@ -2,33 +2,34 @@ package main
 
 import (
 	"fmt"
-	// CẦN THAY ĐỔI ĐƯỜNG DẪN NÀY CHO ĐÚNG VỚI DỰ ÁN CỦA BẠN
 	"goapp-giahuy/learninggo/day13/student"
 	"goapp-giahuy/learninggo/day13/teacher"
 	"goapp-giahuy/learninggo/day13/utils"
+	"os"
 )
 
 func main() {
 	for {
 		utils.ClearScreen()
-		fmt.Println("==== HỆ THỐNG QUẢN LÝ ====")
+		fmt.Println("======== 📚 HỆ THỐNG QUẢN LÝ ========")
 		fmt.Println("1. Quản lý Sinh viên")
 		fmt.Println("2. Quản lý Giảng viên")
-		fmt.Println("3. Thoát")
+		fmt.Println("3. Thoát chương trình")
+		fmt.Println("====================================")
 
-		choice := utils.ReadInt("👉 Chọn chức năng: ")
+		choice := utils.GetPositiveInt("👉 Chọn chức năng: ")
 
 		switch choice {
 		case 1:
-			student.SubMenu() // Gọi menu con của sinh viên
+			student.SubMenu()
 		case 2:
-			teacher.MenuQuanLyGiangVien() // Gọi menu con của giảng viên
+			teacher.MenuQuanLyGiangVien()
 		case 3:
-			fmt.Println("👋 Tạm biệt!")
-			return
+			fmt.Println("👋 Tạm biệt! Tác giả: Gia Huy")
+			os.Exit(0)
 		default:
-			fmt.Println("❌ Lựa chọn không hợp lệ.")
-			utils.ReadString("\nNhấn Enter để tiếp tục...")
+			fmt.Println("⚠️ Lựa chọn không hợp lệ!")
+			utils.ReadInput("\nNhấn Enter để chọn lại...")
 		}
 	}
 }
