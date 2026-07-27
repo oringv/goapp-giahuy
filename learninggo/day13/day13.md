@@ -90,12 +90,3 @@ Kiểm tra trùng ID khi thêm sinh viên và giảng viên
  Áp dụng tương tự cho struct Teacher
  Tối ưu code bằng generic function để tránh lặp code
  Xử lý lỗi vòng lặp package trong Golang
-
-## Video 57
-- todo
-Bài tập Xây dựng chức năng sửa sinh viên
-Tìm sinh viên theo ID trong student list
-Cập nhật tên, lớp với tùy chọn giữ nguyên giá trị cũ
-Xử lý cập nhật điểm bằng cách duyệt slice score
-Tạo hàm GetOptionalString và GetOptionalPositiveFloat
-Kiểm tra trường hợp ID không tồn tại
