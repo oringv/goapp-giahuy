@@ -8,3 +8,6 @@
 
 ## Video 61
 - todo 
+Tìm hiểu kiểu dữ liệu map trong Golang
+Khái niệm:
+Map là một tập hợp các dữ liệu giống như array và slice nhưng Key của map sẽ do lập trình viên tự quy định
