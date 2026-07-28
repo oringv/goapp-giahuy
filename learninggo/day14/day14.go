@@ -2,9 +2,9 @@ package main // Dòng 1
 
 import (
 	"fmt"
-	"goapp-giahuy/learninggo/day13/student"
-	"goapp-giahuy/learninggo/day13/teacher"
-	"goapp-giahuy/learninggo/day13/utils"
+	"goapp-giahuy/learninggo/day14/student"
+	"goapp-giahuy/learninggo/day14/teacher"
+	"goapp-giahuy/learninggo/day14/utils"
 	"os"
 )
 
