@@ -1,11 +1,14 @@
-package day16
+package main
 
-import "fmt"
+import (
+	"fmt"
+	"goapp-giahuy/learninggo/day16/utils"
+)
 
-func mani() {
+func main() {
 
 	for {
-		fmt.Println(" CHUONG TRINH QUAN LY THU VIEN")
+		fmt.Println("\n📚 CHUONG TRINH QUAN LY THU VIEN")
 		fmt.Println("1. Them sach")
 		fmt.Println("2. Xem danh sach sach")
 		fmt.Println("3. Them nguoi muon")
@@ -15,7 +18,10 @@ func mani() {
 		fmt.Println("7. Tra sach")
 		fmt.Println("8. Tim kiem sach")
 		fmt.Println("9. Thoat")
-		choice := util.GetPostiveInt("Chon chu nang :")
+
+		choice := utils.GetPositiveInt("👉 Chon chu nang: ")
+
+		utils.ClearScreen()
 
 		switch choice {
 		case 1:
@@ -26,7 +32,20 @@ func mani() {
 			fmt.Println("-=-=-=-=- Them Nguoi Muon Sach -=-=-=-=-")
 		case 4:
 			fmt.Println("-=-=-=-=- Xem Danh Sach Nguoi Muon -=-=-=-=-")
-
+		case 5:
+			fmt.Println("-=-=-=-=- Muon Sach -=-=-=-=-")
+		case 6:
+			fmt.Println("-=-=-=-= Xem Lich Su Muon Sach -=-=-=-=-=")
+		case 7:
+			fmt.Println("-=-=-=-=- Tra Sach -=-=-=-=-")
+		case 8:
+			fmt.Println("-=-=-=-=- Tim Kiem Sach -=-=-=-=-")
+		case 9:
+			fmt.Println("👋 Tam biet!")
+			return
+		default:
+			fmt.Println("⚠️ Lua chon khong hop le!")
 		}
+		utils.ReadInput("\nNhấn Enter để tiếp tục...")
 	}
 }
