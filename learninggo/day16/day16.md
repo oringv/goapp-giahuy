@@ -13,3 +13,11 @@ Khởi tạo project quản lý thư viện với nhiều file Golang
  Áp dụng lại kiến thức từ các bài trước như GetPositiveInt()
  Tách chức năng thêm/sửa/xem sách và người mượn thành các hàm
  Cách xử lý error và trả về lỗi khi thực hiện chức năng
+
+## Video 65
+- todo 
+ Bài tập Xây dựng Chức năng thêm Sách cho thư viện 
+ Xây dựng chức năng thêm sách cơ bản
+ Sử dụng uuid để tạo ID tự động
+ Lưu dữ liệu sách bằng struct và map
+ Hiển thị danh sách sách đã thêm và tránh lỗi ghi đè

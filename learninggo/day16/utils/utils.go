@@ -8,7 +8,12 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"uuid"
 )
+
+func GenerateId() {
+	return uuid.New().String()
+}
 
 var Reader = bufio.NewReader(os.Stdin)
 
