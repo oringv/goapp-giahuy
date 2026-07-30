@@ -21,3 +21,13 @@ Khởi tạo project quản lý thư viện với nhiều file Golang
  Sử dụng uuid để tạo ID tự động
  Lưu dữ liệu sách bằng struct và map
  Hiển thị danh sách sách đã thêm và tránh lỗi ghi đè
+
+## Video 66
+- todo 
+ Bài tập Tối ưu chức năng thêm sách giúp code hiệu quả
+ Tách riêng xử lý dữ liệu (store) và xử lý logic (service)
+ Khai báo struct Library quản lý sách với map
+ Sử dụng con trỏ trong Golang để truyền dữ liệu hiệu quả
+ Tạo constructor NewLibrary() để khởi tạo thư viện
+ Gọi hàm thêm sách (AddBook) thông qua receiver hoặc truyền tham số
+ Quản lý dự án rõ ràng bằng cách chia file theo chức năng

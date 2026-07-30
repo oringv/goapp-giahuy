@@ -8,14 +8,29 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
-	"uuid"
+
+	"github.com/google/uuid" // 1. Sửa lại import chuẩn của Google
 )
 
-func GenerateId() {
+// 2. FIX LỖI: Phải thêm kiểu trả về "string" ở đây
+func GenerateId() string {
 	return uuid.New().String()
 }
 
 var Reader = bufio.NewReader(os.Stdin)
+
+// 3. THÊM HÀM NÀY: Để file library_service không báo lỗi undefined
+func GetNonEmptyString(prompt string) string {
+	for {
+		fmt.Print(prompt)
+		input, _ := Reader.ReadString('\n')
+		input = strings.TrimSpace(input)
+		if input != "" {
+			return input
+		}
+		fmt.Println("⚠️ Lỗi: Nội dung không được để trống!")
+	}
+}
 
 func ClearScreen() {
 	if runtime.GOOS == "windows" {
@@ -53,7 +68,6 @@ func GetPositiveFloat(prompt string) float64 {
 	}
 }
 
-// ✅ THÊM HÀM NÀY: Nhập chuỗi, nhấn Enter để giữ nguyên giá trị cũ
 func GetOptionalString(prompt string, oldValue string) string {
 	fmt.Printf("%s [%s]: ", prompt, oldValue)
 	input, _ := Reader.ReadString('\n')
@@ -64,7 +78,6 @@ func GetOptionalString(prompt string, oldValue string) string {
 	return input
 }
 
-// ✅ THÊM HÀM NÀY: Nhập số thực, nhấn Enter để giữ nguyên giá trị cũ
 func GetOptionalPositiveFloat(prompt string, oldValue float64) float64 {
 	for {
 		fmt.Printf("%s [%.2f]: ", prompt, oldValue)
