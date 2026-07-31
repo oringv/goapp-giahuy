@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"goapp-giahuy/learninggo/day16/models"
 	"goapp-giahuy/learninggo/day16/utils"
+	"strings"
 )
 
 // Chức năng Thêm Sách
@@ -31,13 +32,25 @@ func AddBook(lib *Library) error {
 
 // Chức năng Xem Danh Sách
 func ListBooks(lib *Library) error {
+	// 2. Kiểm tra thư viện rỗng
 	if len(lib.Books) == 0 {
 		fmt.Println("📭 Thư viện hiện tại chưa có sách nào.")
 		return nil
 	}
+
 	fmt.Println("\n--- DANH SÁCH SÁCH TRONG THƯ VIỆN ---")
+	// Định dạng bảng
+	fmt.Printf("%-36s | %-15s | %-15s | %-10s\n", "Mã ID (UUID)", "Tiêu Đề", "Tác Giả", "Trạng Thái")
+	fmt.Println(strings.Repeat("-", 85))
+
+	// 3. Duyệt Map bằng for range để in thông tin
 	for _, b := range lib.Books {
-		fmt.Printf("ID: %s | Tên: %-15s | Tác giả: %s\n", b.Id, b.Title, b.Author)
+		status := "🟢 Còn sách"
+		if b.IsBorrowed {
+			status = "🔴 Đã mượn"
+		}
+
+		fmt.Printf("%-36s | %-15s | %-15s | %-10s\n", b.Id, b.Title, b.Author, status)
 	}
 	return nil
 }

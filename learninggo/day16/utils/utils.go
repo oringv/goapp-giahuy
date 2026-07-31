@@ -9,17 +9,15 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/google/uuid" // 1. Sửa lại import chuẩn của Google
+	"github.com/google/uuid"
 )
 
-// 2. FIX LỖI: Phải thêm kiểu trả về "string" ở đây
 func GenerateId() string {
 	return uuid.New().String()
 }
 
 var Reader = bufio.NewReader(os.Stdin)
 
-// 3. THÊM HÀM NÀY: Để file library_service không báo lỗi undefined
 func GetNonEmptyString(prompt string) string {
 	for {
 		fmt.Print(prompt)

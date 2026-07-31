@@ -31,3 +31,11 @@ Khởi tạo project quản lý thư viện với nhiều file Golang
  Tạo constructor NewLibrary() để khởi tạo thư viện
  Gọi hàm thêm sách (AddBook) thông qua receiver hoặc truyền tham số
  Quản lý dự án rõ ràng bằng cách chia file theo chức năng
+
+## Video 67
+- todo 
+ Bài tập Hiển thị danh sách của sách trong thư viện
+  Demo chức năng hiển thị danh sách sách
+    Kiểm tra thư viện rỗng và xử lý thông báo
+    Duyệt slice với for range để in thông tin sách
+    Thêm trạng thái sách "Còn / Đã mượn" vào struct
