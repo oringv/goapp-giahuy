@@ -39,3 +39,18 @@ Khởi tạo project quản lý thư viện với nhiều file Golang
     Kiểm tra thư viện rỗng và xử lý thông báo
     Duyệt slice với for range để in thông tin sách
     Thêm trạng thái sách "Còn / Đã mượn" vào struct
+
+## Video 68
+- todo 
+Bài tập Thêm người mượn sách và danh sách người mượn
+Tạo struct để lưu thông tin người mượn (ID, Name, Email)
+ Lưu người mượn vào map[string]Borrower
+ Hiển thị danh sách người mượn từ map
+ Kiểm tra dữ liệu rỗng và xử lý hợp lý
+
+## Video 69
+- todo 
+Bài tập Xây dựng chức năng mượn sách
+Thiết kế mô hình giao dịch mượn sách trong thư viện
+Kiểm tra điều kiện đầu vào (sách tồn tại, người mượn tồn tại, sách đã được mượn hay chưa)
+Cập nhật trạng thái sách và lưu lịch sử mượn

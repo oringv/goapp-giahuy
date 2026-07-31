@@ -56,9 +56,43 @@ func ListBooks(lib *Library) error {
 }
 
 // Các chức năng khác trả về nil để không bị lỗi build
-func AddBorrower(lib *Library) error       { return nil }
-func ListBorrowers(lib *Library) error     { return nil }
-func BorrowBook(lib *Library) error        { return nil }
+func AddBorrower(lib *Library) error {
+	id := utils.GenerateId()
+	name := utils.GetNonEmptyString("- Nhap ten nguoi muon: ")
+	email := utils.GetNonEmptyString("- Nhap email: ")
+
+	err := lib.AddBorrowerStore(id, name, email)
+	if err == nil {
+		fmt.Println("✅ Thêm người mượn thành công!")
+	}
+	return err
+}
+
+// ✅ CHỨC NĂNG QUAN TRỌNG: Hiển thị giống hệt ảnh mẫu
+func ListBorrowers(lib *Library) error {
+	borrowers := lib.ListBorrowersStore()
+
+	// Kiểm tra dữ liệu rỗng
+	if len(borrowers) == 0 {
+		fmt.Println("📭 Danh sách người mượn hiện tại đang trống.")
+		return nil
+	}
+
+	fmt.Println("-=-=-=-=- Xem Danh Sach Nguoi Muon -=-=-=-=-")
+	fmt.Println("Danh sach nguoi muon:")
+
+	// Duyệt map và in đúng định dạng trong ảnh
+	for _, b := range borrowers {
+		fmt.Printf("Id: %s, Ten: %s, Email: %s\n", b.Id, b.Name, b.Email)
+	}
+
+	return nil
+}
+
+func BorrowBook(lib *Library) error {
+
+	return nil
+}
 func ListBorrowHistory(lib *Library) error { return nil }
 func ReturnBook(lib *Library) error        { return nil }
 func SearchBooks(lib *Library) error       { return nil }
