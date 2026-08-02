@@ -1,0 +1,19 @@
+
+
+
+--- DANH SÁCH SÁCH TRONG THƯ VIỆN ---
+Mã ID                                | Tiêu Đề              | Tác Giả         | Trạng Thái
+------------------------------------------------------------------------------------------
+9f578082-c26d-43b1-be29-7b2db9d7575b | sach a               | henry           | 🟢 Còn sách
+07a15b67-c5b2-42b4-8b75-ab29d91e864a | sach b               | ha              | 🟢 Còn sách
+
+--- DANH SÁCH NGƯỜI MƯỢN ---
+ID: 3c13b17d-b561-4652-81b4-271ba1fb424f | Tên: wy              | Email: wy@gmail.com
+ID: 8314c88e-316d-4041-8ce3-83111ca63577 | Tên: hen             | Email: w222y@gmail.com
+
+9f578082-c26d-43b1-be29-7b2db9d7575b | sach a               | henry           | 🔴 Đã mượn 
+07a15b67-c5b2-42b4-8b75-ab29d91e864a | sach b               | ha              | 🟢 Còn sách
+
+
+
+
