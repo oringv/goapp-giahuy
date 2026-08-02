@@ -54,3 +54,20 @@ Bài tập Xây dựng chức năng mượn sách
 Thiết kế mô hình giao dịch mượn sách trong thư viện
 Kiểm tra điều kiện đầu vào (sách tồn tại, người mượn tồn tại, sách đã được mượn hay chưa)
 Cập nhật trạng thái sách và lưu lịch sử mượn
+
+## Video 70
+- todo 
+Bài tập Hiển thị lịch sử mượn sách theo người mượn
+Hiểu cách kiểm tra và lấy thông tin lịch sử mượn sách của người dùng
+Cách viết hàm để lấy toàn bộ giao dịch mượn sách của người dùng từ session
+Cách xử lý và hiển thị thông tin về sách đã mượn, ngày mượn và ngày trả một cách rõ ràng
+
+## Video 71
+- todo 
+Bài tập Xây dựng chúc năng trả sách cho thư viện
+Hiểu cách kiểm tra trạng thái trả sách qua ID giao dịch
+Cập nhật thông tin sách và ngày trả khi thực hiện trả sách
+
+## Video 72
+- todo 
+ Bài tập Chức năng tìm kiếm sách với tiêu đề và tác giả

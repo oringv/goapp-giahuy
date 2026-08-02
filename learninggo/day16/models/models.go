@@ -15,8 +15,10 @@ type Borrower struct {
 	Email string
 }
 
-type BorrowRecord struct {
+type Transaction struct {
+	Id         string
 	BookId     string
 	BorrowerId string
 	BorrowDate time.Time
+	ReturnDate time.Time // ✅ Thêm trường này để ghi nhận ngày trả
 }

@@ -7,71 +7,69 @@ import (
 )
 
 func main() {
-
 	lib := library.NewLibrary()
 
 	for {
-		fmt.Println("\n📚 CHUONG TRINH QUAN LY THU VIEN")
-		fmt.Println("1. Them sach")
-		fmt.Println("2. Xem danh sach sach")
-		fmt.Println("3. Them nguoi muon")
-		fmt.Println("4. Xem danh sach nguoi muon")
-		fmt.Println("5. Muon sach")
-		fmt.Println("6. Xem lich su muon")
-		fmt.Println("7. Tra sach")
-		fmt.Println("8. Tim kiem sach")
-		fmt.Println("9. Thoat")
-
-		choice := utils.GetPositiveInt("👉 Chon chu nang: ")
-
 		utils.ClearScreen()
+		fmt.Println("\n📚 CHƯƠNG TRÌNH QUẢN LÝ THƯ VIỆN")
+		fmt.Println("1. Thêm sách")
+		fmt.Println("2. Xem danh sách sách")
+		fmt.Println("3. Thêm người mượn")
+		fmt.Println("4. Xem danh sách người mượn")
+		fmt.Println("5. Mượn sách")
+		fmt.Println("6. Xem lịch sử mượn")
+		fmt.Println("7. Trả sách")
+		fmt.Println("8. Tìm kiếm sách")
+		fmt.Println("9. Thoát")
+
+		choice := utils.GetPositiveInt("👉 Chọn chức năng: ")
 
 		switch choice {
 		case 1:
-			fmt.Println("-=-=-=-=- Them Sach -=-=-=-=-")
+			fmt.Println("-=-=-=-=- Thêm Sách -=-=-=-=-")
 			if err := library.AddBook(lib); err != nil {
-				fmt.Printf(" Loi khi them sach: %v\n, err")
+				fmt.Printf("❌ Lỗi khi thêm sách: %v\n", err)
 			}
 		case 2:
-			fmt.Println("-=-=-=-=- Xem Danh Sach Sach -=-=-=-=-")
+			fmt.Println("-=-=-=-=- Xem Danh Sách Sách -=-=-=-=-")
 			if err := library.ListBooks(lib); err != nil {
-				fmt.Printf(" Loi khi xem danh sach sach: %v\n, err")
+				fmt.Printf("❌ Lỗi khi xem danh sách: %v\n", err)
 			}
 		case 3:
-			fmt.Println("-=-=-=-=- Them Nguoi Muon Sach -=-=-=-=-")
+			fmt.Println("-=-=-=-=- Thêm Người Mượn -=-=-=-=-")
 			if err := library.AddBorrower(lib); err != nil {
-				fmt.Printf(" Loi khi them nguoi muon sach: %v\n, err")
+				fmt.Printf("❌ Lỗi khi thêm người mượn: %v\n", err)
 			}
 		case 4:
-			fmt.Println("-=-=-=-=- Xem Danh Sach Nguoi Muon -=-=-=-=-")
+			fmt.Println("-=-=-=-=- Xem Danh Sách Người Mượn -=-=-=-=-")
 			if err := library.ListBorrowers(lib); err != nil {
-				fmt.Printf(" Loi khi xem danh sach nguoi muon: %v\n, err")
+				fmt.Printf("❌ Lỗi khi xem danh sách: %v\n", err)
 			}
 		case 5:
-			fmt.Println("-=-=-=-=- Muon Sach -=-=-=-=-")
+			fmt.Println("-=-=-=-=- Mượn Sách -=-=-=-=-")
 			if err := library.BorrowBook(lib); err != nil {
-				fmt.Printf(" Loi khi muon sach: %v\n, err")
+				fmt.Printf("❌ Lỗi khi mượn sách: %v\n", err)
 			}
 		case 6:
-			fmt.Println("-=-=-=-= Xem Lich Su Muon Sach -=-=-=-=-=")
+			fmt.Println("-=-=-=-= Xem Lịch Sử Mượn Sách -=-=-=-=-")
 			if err := library.ListBorrowHistory(lib); err != nil {
-				fmt.Printf(" Loi khi xem lich su muon sach: %v\n, err")
+				fmt.Printf("❌ Lỗi khi xem lịch sử: %v\n", err)
 			}
 		case 7:
-			fmt.Println("-=-=-=-=- Tra Sach -=-=-=-=-")
+			fmt.Println("-=-=-=-=- Trả Sách -=-=-=-=-")
 			if err := library.ReturnBook(lib); err != nil {
-				fmt.Printf(" Loi khi tra sach: %v\n, err")
+				fmt.Printf("❌ Lỗi khi trả sách: %v\n", err)
 			}
 		case 8:
-			fmt.Println("-=-=-=-=- Tim Kiem Sach -=-=-=-=-")
+			fmt.Println("-=-=-=-=- Tìm Kiếm Sách -=-=-=-=-")
 			if err := library.SearchBooks(lib); err != nil {
-				fmt.Printf(" Loi khi them sach: %v\n, err")
+				fmt.Printf("❌ Lỗi khi tìm kiếm: %v\n", err)
 			}
 		case 9:
-			fmt.Println("👋 Tam biet!")
+			fmt.Println("👋 Tạm biệt!")
 			return
 		default:
-			fmt.Println("⚠️ Lua chon khong hop le!")
+			fmt.Println("⚠️ Lựa chọn không hợp lệ!")
 		}
 		utils.ReadInput("\nNhấn Enter để tiếp tục...")
 	}
