@@ -1,4 +1,4 @@
-# Video 73-
+# Video 73-77
 
 1. Xem video, thực hành theo và lưu vào day17.go 
 2. Ghi chú lại tất cả những kiến thức gì trong file day17.md
