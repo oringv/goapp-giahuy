@@ -1,0 +1,10 @@
+# Video 78-
+
+1. Xem video, thực hành theo và lưu vào day78.go 
+2. Ghi chú lại tất cả những kiến thức gì trong file day18.md
+3. Phải đảm bảo code mẫu trong day78.go giống với video và chạy được không có lỗi 
+4. Viết các lỗi thường gặp, nguyên nhân, cách giải quyết lỗi
+5. Câu hỏi chưa hiểu cần hỏi để làm rõ 
+
+## Video 78
+- todo 
