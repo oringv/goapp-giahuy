@@ -8,3 +8,8 @@
 
 ## Video 85
 - todo 
+Tìm hiểu GOMAXPROCS và giới hạn CPU trong Golang
+Mặc định Goroutione sẽ tự động chạy Parallelism kết hợp với Concurrent nếu ứng dụng chúng ta có nhiều Concurrent, cũng như sẽ tự động phân phối lượng CPU cho phù hợp để đạt được hiệu năng tốt nhất cho ứng dụng. Tuy nhiên, trong một số trường hợp điều này làm chiếm dụng hết toàn bộ CPU trên hệ thống khiến các chương trình khác bị treo. Vì thế chúng ta cần quản lý số lượng CPU phù hợp cho ứng dụng.
+
+## Video 86
+- todo 
