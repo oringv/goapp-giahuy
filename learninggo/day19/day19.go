@@ -1,4 +1,26 @@
 package main
 
+import (
+	"fmt"
+	"sync"
+)
+
 func main() {
+
+	tokens := 0
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+	for i := 0; i < 1000; i++ {
+		wg.Add(1)
+		go func() {
+			mu.Lock()
+			tokens++
+			mu.Unlock()
+
+			wg.Done()
+		}()
+	}
+
+	wg.Wait()
+	fmt.Println(tokens)
 }
