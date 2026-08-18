@@ -2,20 +2,17 @@ package processor
 
 import (
 	"context"
-	"fmt"
+	"goapp-giahuy/learninggo/day20/models" // Import model mới
 	"goapp-giahuy/learninggo/day20/monitors"
 	"sync"
 	"time"
 )
 
-func RunMonitor(ctx context.Context, wg *sync.WaitGroup) {
+func RunMonitor(ctx context.Context, wg *sync.WaitGroup, statCh chan<- models.SystemStats, m models.Montitor) {
 	defer wg.Done()
-
 	ticker := time.NewTicker(2 * time.Second)
 	defer ticker.Stop()
 
-	// Khai báo danh sách các monitor sử dụng Interface
-	// Nếu ở monitors bạn đặt là Monitor thì ở đây dùng monitors.Monitor
 	ms := []monitors.Monitor{
 		&monitors.CPUMonitor{},
 		&monitors.MemoryMonitor{},
@@ -27,7 +24,9 @@ func RunMonitor(ctx context.Context, wg *sync.WaitGroup) {
 			return
 		case <-ticker.C:
 			for _, m := range ms {
-				fmt.Printf("%s : %s\n", m.Name(), m.Check(ctx))
+				val := m.Check(ctx)
+				// Gửi dữ liệu vào channel dưới dạng Struct
+				statCh <- models.SystemStats{Label: m.Name(), Value: val}
 			}
 		}
 	}
