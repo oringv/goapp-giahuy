@@ -13,3 +13,20 @@ Mặc định Goroutione sẽ tự động chạy Parallelism kết hợp với 
 
 ## Video 86
 - todo 
+Demo bài tập ứng dụng giúp quản lý hệ thống Server
+
+## Video 87
+- todo 
+Hiển thị lượng phần trăm CPU đang sử dụng trên hệ thống 
+
+## Video 88
+- todo 
+Bài tập tích hợp Goroutines vào dự án 
+
+## Video 89
+- todo 
+Tối ưu mã nguồn và tìm hiểu rõ hơn về context.WithCancel và context.WithTimeout
+
+## Video 90
+- todo 
+Hiển thị phần trăm dung dượng của Memory

@@ -36,29 +36,24 @@ package main
 import (
 	"context"
 	"fmt"
+	"goapp-giahuy/learninggo/day20/processor"
+	"sync"
 	"time"
-
-	"github.com/shirou/gopsutil/v4/cpu"
 )
 
-type CPUMonitor struct {
-}
-
-func (m *CPUMonitor) Check(ctx context.Context) string {
-	percent, err := cpu.PercentWithContext(ctx, time.Second, false)
-	if err != nil {
-		return "N/A"
-	}
-	fmt.Println("%+V", percent)
-	value := fmt.Sprintf("%.2f", percent[0])
-	return value
-}
-
 func main() {
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	// Chạy trong 10 giây rồi tự nghỉ
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	monitor := CPUMonitor{}
-	cpuPercent := monitor.Check(ctx)
-	fmt.Println(cpuPercent)
+	var wg sync.WaitGroup
+	wg.Add(1)
+
+	fmt.Println("🚀 Đang khởi tạo hệ thống giám sát...")
+
+	// Gọi hàm từ package processor
+	go processor.RunMonitor(ctx, &wg)
+
+	wg.Wait()
+	fmt.Println("🏁 Chương trình kết thúc thành công.")
 }
