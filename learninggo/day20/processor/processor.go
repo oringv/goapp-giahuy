@@ -2,10 +2,13 @@ package processor
 
 import (
 	"context"
+	"fmt"
 	"goapp-giahuy/learninggo/day20/models"
 	"goapp-giahuy/learninggo/day20/monitors"
 	"sync"
 	"time"
+
+	"github.com/shirou/gopsutil/v4/process"
 )
 
 func RunMonitor(ctx context.Context, wg *sync.WaitGroup, statCh chan<- models.SystemStats, m monitors.Monitor) {
@@ -18,7 +21,6 @@ func RunMonitor(ctx context.Context, wg *sync.WaitGroup, statCh chan<- models.Sy
 		case <-ctx.Done():
 			return
 		case <-ticker.C:
-			// Lấy dữ liệu và gửi vào channel dưới dạng Struct
 			val := m.Check(ctx)
 			statCh <- models.SystemStats{
 				Label: m.Name(),
@@ -26,4 +28,14 @@ func RunMonitor(ctx context.Context, wg *sync.WaitGroup, statCh chan<- models.Sy
 			}
 		}
 	}
+}
+
+func GetTopProcesses(ctx context.Context) string {
+	processes, err := process.ProcessesWithContext(ctx)
+	if err != nil {
+		return fmt.Sprintf("[Get Top Processes] Could not retrieve info: %v \n", err)
+	}
+
+	// In ra số lượng tiến trình đang chạy cho gọn
+	return fmt.Sprintf("Running Processes: %d", len(processes))
 }

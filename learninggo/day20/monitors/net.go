@@ -14,7 +14,7 @@ func (m *NetMonitor) Name() string { return "Net" } // Để tên là Net giốn
 func (m *NetMonitor) Check(ctx context.Context) string {
 	netStat, err := net.IOCountersWithContext(ctx, false)
 	if err != nil || len(netStat) == 0 {
-		return "N/A"
+		return fmt.Sprintf("[Network Top Processes] Cloud not retrieve Network info: %v \n", err)
 	}
 
 	// Trả về định dạng: Send: X KB, Recv: Y KB

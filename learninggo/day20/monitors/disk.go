@@ -23,7 +23,7 @@ func (m *DiskMonitor) Check(ctx context.Context) string {
 	diskStat, err := disk.UsageWithContext(ctx, path)
 
 	if err != nil {
-		return "N/A"
+		return fmt.Sprintf("[Disk Top Processes] Cloud not retrieve Disk info: %v \n", err)
 	}
 
 	value := fmt.Sprintf("%.2f%% used", diskStat.UsedPercent)

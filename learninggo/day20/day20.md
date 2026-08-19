@@ -43,4 +43,15 @@ Sử dụng Interface và Slice để tránh duplicate và tối ưu
 - todo 
 Hiển thị toàn bộ thông tin trạng thái hoạt động của hệ thống trong Golang
 
+## Video 94
+- todo 
+Hiển thị danh sách các chương trình đang hoạt động trên hệ thống
+Tạo file mem.go trong package monitor  
+Tái sử dụng code từ cpu.go để xử lý memory  
+Dùng hàm VirtualMemoryWithContext để lấy thông tin RAM  
+Trích xuất UsedPercent từ virtual memory  
+In thông tin phần trăm sử dụng của RAM và CPU  
+Xuất thông tin sang main.go để xử lý bên ngoài 
+
+- PID Là số tiến trình chạy trên hệ thống 
 

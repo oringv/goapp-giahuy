@@ -14,7 +14,7 @@ func (m *MemoryMonitor) Name() string { return "MEM" }
 func (m *MemoryMonitor) Check(ctx context.Context) string {
 	v, err := mem.VirtualMemoryWithContext(ctx)
 	if err != nil {
-		return "N/A"
+		return fmt.Sprintf("[Memory Top Processes] Cloud not retrieve Memory info: %v \n", err)
 	}
 	// ✅ FIX: Đổi Print thành Printf
 	// fmt.Printf("DEBUG: %+v\n", v)
