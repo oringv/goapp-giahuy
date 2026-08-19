@@ -20,5 +20,5 @@ type Transaction struct {
 	BookId     string
 	BorrowerId string
 	BorrowDate time.Time
-	ReturnDate time.Time // ✅ Thêm trường này để ghi nhận ngày trả
+	ReturnDate time.Time
 }

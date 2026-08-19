@@ -3,24 +3,20 @@ package monitors
 import (
 	"context"
 	"fmt"
-	"time"
 
-	"github.com/shirou/gopsutil/v4/cpu"
+	"github.com/shirou/gopsutil/v4/net"
 )
 
-type NetMonitor struct {
-}
+type NetMonitor struct{}
 
-func (m *NetMonitor) Name() string {
-	return "CPU"
-}
+func (m *NetMonitor) Name() string { return "Net" } // Để tên là Net giống ảnh
 
 func (m *NetMonitor) Check(ctx context.Context) string {
-	percent, err := cpu.PercentWithContext(ctx, time.Second, false)
-	if err != nil || len(percent) == 0 {
+	netStat, err := net.IOCountersWithContext(ctx, false)
+	if err != nil || len(netStat) == 0 {
 		return "N/A"
 	}
-	value := fmt.Sprintf("%.2f%%", percent[0])
 
-	return value
+	// Trả về định dạng: Send: X KB, Recv: Y KB
+	return fmt.Sprintf("Send: %d KB, Recv: %d KB", netStat[0].BytesSent/1024, netStat[0].BytesRecv/1024)
 }

@@ -44,37 +44,53 @@ import (
 )
 
 func main() {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	// 1. Thiết lập thời gian chạy 20 giây
+	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
 
 	var wg sync.WaitGroup
 	statCh := make(chan models.SystemStats)
 
-	// ✅ FIX: Khai báo danh sách các bộ giám sát
+	// Danh sách các bộ giám sát
 	monitorList := []monitors.Monitor{
 		&monitors.MemoryMonitor{},
 		&monitors.CPUMonitor{},
+		&monitors.NetMonitor{},
+		&monitors.DiskMonitor{},
 	}
 
-	fmt.Println("🚀 Đang khởi tạo hệ thống giám sát...")
+	fmt.Println("🚀 Hệ thống giám sát bắt đầu hoạt động...")
 
-	// Duyệt qua danh sách và chạy mỗi con vật trong 1 Goroutine riêng
+	// 2. Kích hoạt các Goroutine làm việc (Producers)
 	for _, m := range monitorList {
 		wg.Add(1)
 		go processor.RunMonitor(ctx, &wg, statCh, m)
 	}
 
-	// Goroutine đóng channel
+	go func() {
+		for stat := range statCh {
+			models.StatsMutex.Lock()
+			models.Stats[stat.Label] = stat
+			models.StatsMutex.Unlock()
+
+			fmt.Printf("📥 Log: %+v\n", stat)
+		}
+	}()
+
 	go func() {
 		wg.Wait()
 		close(statCh)
 	}()
 
-	// ✅ LOGIC IN RA GIỐNG ẢNH TERMINAL CỦA BẠN:
-	for stat := range statCh {
-		// Chỉ dùng dòng in này để ra kết quả có dấu { }
-		fmt.Printf("%v\n", stat)
-	}
+	fmt.Println("⏳ Đang thu thập dữ liệu trong 20 giây...")
+	<-ctx.Done() // Đợi cho đến khi Timeout (20s) xảy ra
 
-	fmt.Println("🏁 Chương trình kết thúc.")
+	fmt.Println("\n📊 TỔNG KẾT DỮ LIỆU TRONG MAP:")
+	models.StatsMutex.Lock()
+	for label, data := range models.Stats {
+		fmt.Printf("{%s: %s}\n", label, data.Value)
+	}
+	models.StatsMutex.Unlock()
+
+	fmt.Println("🏁 Chương trình kết thúc thành công.")
 }

@@ -30,3 +30,17 @@ Tối ưu mã nguồn và tìm hiểu rõ hơn về context.WithCancel và conte
 ## Video 90
 - todo 
 Hiển thị phần trăm dung dượng của Memory
+
+## Video 91
+- todo 
+Sử dụng Channel để truyển dữ liệu giữa các Goroutine 
+
+## Video 92
+- todo 
+Sử dụng Interface và Slice để tránh duplicate và tối ưu 
+
+## Video 93
+- todo 
+Hiển thị toàn bộ thông tin trạng thái hoạt động của hệ thống trong Golang
+
+

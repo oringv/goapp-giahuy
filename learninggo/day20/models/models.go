@@ -1,6 +1,9 @@
 package models
 
-import "context"
+import (
+	"context"
+	"sync"
+)
 
 type Montitor interface {
 	Name() string
@@ -11,3 +14,6 @@ type SystemStats struct {
 	Label string
 	Value string
 }
+
+var Stats = make(map[string]SystemStats)
+var StatsMutex sync.Mutex
