@@ -9,13 +9,10 @@ import (
 	"time"
 
 	"github.com/shirou/gopsutil/v4/cpu"
-	"github.com/shirou/gopsutil/v4/disk"
-	"github.com/shirou/gopsutil/v4/mem"
-	"github.com/shirou/gopsutil/v4/net"
 	"github.com/shirou/gopsutil/v4/process"
 )
 
-// HÀM BỊ THIẾU: RunMonitor thu thập dữ liệu từ các bộ giám sát
+// 1. Hàm chạy thu thập dữ liệu từ các Monitor
 func RunMonitor(ctx context.Context, wg *sync.WaitGroup, statCh chan<- models.SystemStats, m monitors.Monitor) {
 	defer wg.Done()
 	ticker := time.NewTicker(2 * time.Second)
@@ -27,74 +24,60 @@ func RunMonitor(ctx context.Context, wg *sync.WaitGroup, statCh chan<- models.Sy
 			return
 		case <-ticker.C:
 			val := m.Check(ctx)
-			statCh <- models.SystemStats{
-				Label: m.Name(),
-				Value: val,
-			}
+			statCh <- models.SystemStats{Label: m.Name(), Value: val}
 		}
 	}
 }
 
 func GetTopProcesses(ctx context.Context) string {
-	fmt.Println("\n==== 🖥️  System Status Detail ====")
+	fmt.Println("\n--- Top 3 Processes Detail ---")
 
-	// Memory tổng quát
-	vmStat, _ := mem.VirtualMemoryWithContext(ctx)
-	fmt.Printf("[Memory] %.2f%%\n", vmStat.UsedPercent)
-
-	// Disk tổng quát
-	diskStat, _ := disk.UsageWithContext(ctx, "/")
-	fmt.Printf("[Disk] %.2f%% used\n", diskStat.UsedPercent)
-
-	// Network tổng quát
-	netStat, _ := net.IOCountersWithContext(ctx, false)
-	if len(netStat) > 0 {
-		fmt.Printf("[Network] Send: %v KB, Recv: %v KB\n", netStat[0].BytesSent/1024, netStat[0].BytesRecv/1024)
+	// 1. Lấy % CPU tổng quát (Đo trong 500ms để không bị chậm)
+	cpuPercentAll, _ := cpu.PercentWithContext(ctx, 500*time.Millisecond, false)
+	if len(cpuPercentAll) > 0 {
+		fmt.Printf("🔥 Global CPU Usage: %.2f%%\n", cpuPercentAll[0])
 	}
 
-	// CPU tổng quát
-	cpuP, _ := cpu.PercentWithContext(ctx, time.Second, false)
-	if len(cpuP) > 0 {
-		fmt.Printf("[CPU] %.2f%%\n", cpuP[0])
-	}
-
-	// --- LẤY DANH SÁCH TIẾN TRÌNH (Giới hạn top 5 để tránh lag) ---
-	totalMemory := vmStat.Total
+	// 2. Lấy danh sách tiến trình
 	processes, err := process.ProcessesWithContext(ctx)
 	if err != nil {
-		return fmt.Sprintf("[Error] %v \n", err)
+		return "Error"
 	}
 
-	fmt.Println("\n--- Top 5 Processes ---")
-	var wg sync.WaitGroup
-	limit := 5 // Chỉ lấy 5 thằng đầu tiên cho màn hình sạch sẽ
-
-	for i, p := range processes {
-		if i >= limit {
+	limit := 3
+	count := 0
+	for _, p := range processes {
+		if count >= limit {
 			break
 		}
-		wg.Add(1)
-		go func(proc *process.Process) {
-			defer wg.Done()
-			name, _ := proc.NameWithContext(ctx)
-			cpuPercent, _ := proc.CPUPercentWithContext(ctx)
-			memInfo, _ := proc.MemoryInfoWithContext(ctx)
-			if memInfo == nil {
-				return
-			}
 
-			ramPercent := (float64(memInfo.RSS) / float64(totalMemory)) * 100
-			createTimeMs, err := proc.CreateTimeWithContext(ctx)
-			runningTimeStr := "N/A"
-			if err == nil {
-				startTime := time.Unix(createTimeMs/1000, (createTimeMs%1000)*1000000)
-				runningTimeStr = time.Since(startTime).Truncate(time.Second).String()
-			}
+		name, _ := p.NameWithContext(ctx)
 
-			fmt.Printf("PID: %-6d | Name: %-15s | CPU: %-5.2f%% | RAM: %-5.2f%% | Time: %s\n",
-				proc.Pid, name, cpuPercent, ramPercent, runningTimeStr)
-		}(p)
+		cpuP, _ := p.CPUPercentWithContext(ctx)
+		mPercent, _ := p.MemoryPercentWithContext(ctx)
+		mInfo, err := p.MemoryInfoWithContext(ctx)
+
+		if err != nil || mInfo == nil {
+			continue
+		}
+
+		createT, _ := p.CreateTimeWithContext(ctx)
+		runTime := "N/A"
+		if createT > 0 {
+			runTime = time.Since(time.Unix(createT/1000, 0)).Truncate(time.Second).String()
+		}
+
+		s := models.ProStat{
+			PID:         p.Pid,
+			Name:        name,
+			CPU:         cpuP,
+			Memory:      mInfo.RSS,
+			RamPercent:  float64(mPercent),
+			RunningTime: runTime,
+		}
+		fmt.Printf("%+v\n", s)
+		count++
 	}
-	wg.Wait()
+
 	return "-----------------------------------"
 }

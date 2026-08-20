@@ -9,7 +9,7 @@ import (
 
 type NetMonitor struct{}
 
-func (m *NetMonitor) Name() string { return "Net" } // Để tên là Net giống ảnh
+func (m *NetMonitor) Name() string { return "Net" }
 
 func (m *NetMonitor) Check(ctx context.Context) string {
 	netStat, err := net.IOCountersWithContext(ctx, false)

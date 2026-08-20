@@ -15,5 +15,14 @@ type SystemStats struct {
 	Value string
 }
 
+type ProStat struct {
+	PID         int32
+	Name        string
+	CPU         float64
+	Memory      uint64
+	RamPercent  float64
+	RunningTime string
+}
+
 var Stats = make(map[string]SystemStats)
 var StatsMutex sync.Mutex

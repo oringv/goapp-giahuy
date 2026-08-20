@@ -54,4 +54,36 @@ In thông tin phần trăm sử dụng của RAM và CPU
 Xuất thông tin sang main.go để xử lý bên ngoài 
 
 - PID Là số tiến trình chạy trên hệ thống 
-
+- Mutex dùng để cho an toàn
+  
+  PHẦN 1: ĐẶT VẤN ĐỀ & MỤC TIÊU (0 - 3 PHÚT)
+Giới thiệu: Đây là dự án "Hệ thống Giám sát Tài nguyên Thời gian thực". Ý tưởng bắt nguồn từ việc cần theo dõi sức khỏe máy tính một cách liên tục mà không gây treo máy.
+Vấn đề: Các thông số như CPU, RAM, Mạng lấy dữ liệu với tốc độ khác nhau. Nếu chạy tuần tự (hết việc này mới đến việc kia), giao diện sẽ bị đứng và số liệu không chính xác.
+Mục tiêu:
+Ứng dụng đa luồng để thu thập dữ liệu song song.
+Tổ chức code theo chuẩn Package chuyên nghiệp.
+Đảm bảo an toàn dữ liệu khi nhiều luồng cùng hoạt động.
+PHẦN 2: KIẾN TRÚC HỆ THỐNG & INTERFACE (3 - 7 PHÚT)
+Tổ chức Package: Dự án chia làm 3 tầng:
+Tầng Dữ liệu (models): Định nghĩa các "thùng chứa" dữ liệu (Struct) và kho lưu trữ tập trung (Map).
+Tầng Cảm biến (monitors): Chứa các thợ đo đạc. Đây là nơi ứng dụng Interface.
+Tầng Xử lý (processor): Bộ não điều phối các thợ đo và xử lý logic chi tiết từng ứng dụng.
+Điểm nhấn - Interface Monitor:
+Đây là "bản hợp đồng" chung cho mọi bộ đo.
+Lợi ích: Tính mở rộng cực cao. Nếu muốn đo thêm nhiệt độ hay tốc độ quạt, chỉ cần tạo bộ đo mới tuân thủ Interface mà không cần sửa code ở hàm main. Đây là tư duy thiết kế hệ thống hiện đại.
+PHẦN 3: ĐỘNG CƠ ĐA LUỒNG - CONCURRENCY (7 - 11 PHÚT)
+Đây là phần "xịn" nhất của dự án, bạn nên tập trung giải thích kỹ:
+Goroutines & Channels:
+Mình tạo ra các Producers (Người sản xuất): Mỗi bộ đo chạy trên một Goroutine riêng, không ông nào phải đợi ông nào.
+Dùng Channel làm đường ống vận chuyển: Đảm bảo dữ liệu chảy từ các bộ đo về trung tâm một cách trơn tru, không bị thất lạc.
+Quản lý an toàn với Mutex:
+Khi 4-5 ông thợ cùng chạy về ghi tên lên một cái bảng (Map), sẽ xảy ra xung đột (Race Condition).
+Mình dùng sync.Mutex làm "ổ khóa". Ai muốn ghi vào bảng phải cầm khóa, ghi xong mới đưa khóa cho người tiếp theo. Điều này giúp dữ liệu luôn chính xác và chương trình không bao giờ bị "crash".
+PHẦN 4: VÒNG ĐỜI & HIỂN THỊ (11 - 14 PHÚT)
+Kiểm soát với Context: Ứng dụng sử dụng context.WithTimeout. Sau 60 giây (hoặc thời gian định sẵn), ứng dụng sẽ tự động "thu quân", đóng toàn bộ các luồng để trả lại tài nguyên cho máy tính.
+Nhịp tim với Ticker: Thay vì in chữ chạy liên tục làm lóa mắt, mình dùng time.Ticker để cứ đúng 5 giây mới xuất bản báo cáo một lần. Điều này tạo ra sự ổn định cho giao diện người dùng.
+Giải thích kết quả:
+Dấu [...]: Thông số tổng thể (Sức khỏe toàn diện của máy).
+Dấu {...}: Thông số chi tiết (Từng ứng dụng đang làm gì, chạy bao lâu).
+PHẦN 5: TỔNG KẾT & MỞ RỘNG (14 - 15 PHÚT)
+Kết quả: Dự án đã vận hành thành công một bộ máy thu thập dữ liệu phức tạp, an toàn và linh hoạt.

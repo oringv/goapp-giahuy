@@ -8,7 +8,6 @@ import (
 	"github.com/shirou/gopsutil/v4/cpu"
 )
 
-// ✅ BẮT BUỘC PHẢI CÓ ĐOẠN NÀY
 type Monitor interface {
 	Check(ctx context.Context) string
 	Name() string
