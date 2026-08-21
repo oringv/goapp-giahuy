@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	// Chương trình chạy trong 60 giây
 	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
 	defer cancel()
 
@@ -18,19 +19,15 @@ func main() {
 	statCh := make(chan models.SystemStats)
 
 	monitorList := []monitors.Monitor{
-		&monitors.MemoryMonitor{},
-		&monitors.CPUMonitor{},
-		&monitors.NetMonitor{},
-		&monitors.DiskMonitor{},
+		&monitors.CPUMonitor{}, &monitors.MemoryMonitor{},
+		&monitors.NetMonitor{}, &monitors.DiskMonitor{},
 	}
 
-	fmt.Println("🚀 Hệ thống giám sát bắt đầu hoạt động...")
+	fmt.Println("🚀 Đang khởi tạo hệ thống giám sát...")
 
 	for _, m := range monitorList {
 		wg.Add(1)
-		go func(val monitors.Monitor) {
-			processor.RunMonitor(ctx, &wg, statCh, val)
-		}(m)
+		go func(val monitors.Monitor) { processor.RunMonitor(ctx, &wg, statCh, val) }(m)
 	}
 
 	go func() {
@@ -41,10 +38,7 @@ func main() {
 		}
 	}()
 
-	go func() {
-		wg.Wait()
-		close(statCh)
-	}()
+	go func() { wg.Wait(); close(statCh) }()
 
 	printTicker := time.NewTicker(5 * time.Second)
 	defer printTicker.Stop()
@@ -52,18 +46,19 @@ func main() {
 	for {
 		select {
 		case <-ctx.Done():
-			fmt.Println("\n🏁 Chương trình kết thúc.")
+			fmt.Println("🏁 Chương trình kết thúc.")
 			return
 		case <-printTicker.C:
-			fmt.Println("==== 🖥️ System Status ====")
+			// 1. In chi tiết trước
+			processor.GetTopProcesses(ctx)
+
+			// 2. In tổng quát sau (Giống thứ tự trong video)
+			fmt.Println("\n=== System Status ===")
 			models.StatsMutex.Lock()
 			for _, s := range models.Stats {
 				fmt.Printf("[%s] %s \n", s.Label, s.Value)
 			}
 			models.StatsMutex.Unlock()
-
-			// ✅ Gọi hàm in chi tiết tiến trình
-			processor.GetTopProcesses(ctx)
 		}
 	}
 }
