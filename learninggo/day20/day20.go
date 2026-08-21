@@ -11,19 +11,12 @@ import (
 )
 
 func main() {
-	// Chương trình chạy trong 60 giây
 	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
 	defer cancel()
 
 	var wg sync.WaitGroup
 	statCh := make(chan models.SystemStats)
-
-	monitorList := []monitors.Monitor{
-		&monitors.CPUMonitor{}, &monitors.MemoryMonitor{},
-		&monitors.NetMonitor{}, &monitors.DiskMonitor{},
-	}
-
-	fmt.Println("🚀 Đang khởi tạo hệ thống giám sát...")
+	monitorList := []monitors.Monitor{&monitors.CPUMonitor{}, &monitors.MemoryMonitor{}, &monitors.NetMonitor{}, &monitors.DiskMonitor{}}
 
 	for _, m := range monitorList {
 		wg.Add(1)
@@ -40,19 +33,25 @@ func main() {
 
 	go func() { wg.Wait(); close(statCh) }()
 
-	printTicker := time.NewTicker(5 * time.Second)
-	defer printTicker.Stop()
+	ticker := time.NewTicker(5 * time.Second)
+	defer ticker.Stop()
 
 	for {
 		select {
 		case <-ctx.Done():
-			fmt.Println("🏁 Chương trình kết thúc.")
+			fmt.Println("\n🏁 Chương trình kết thúc.")
 			return
-		case <-printTicker.C:
-			// 1. In chi tiết trước
-			processor.GetTopProcesses(ctx)
+		case <-ticker.C:
+			// Làm sạch màn hình Terminal
+			fmt.Print("\033[H\033[2J")
 
-			// 2. In tổng quát sau (Giống thứ tự trong video)
+			// 1. Lấy dữ liệu và tự động in bảng Top 5 ra Terminal
+			cpuList, memList := processor.GetTopProcesses(ctx)
+
+			// 2. Xuất dữ liệu vào CSV
+			processor.ExportToCSV(cpuList, memList)
+
+			// 3. In trạng thái hệ thống tổng quát
 			fmt.Println("\n=== System Status ===")
 			models.StatsMutex.Lock()
 			for _, s := range models.Stats {

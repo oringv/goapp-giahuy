@@ -1,18 +1,11 @@
 package models
 
-import (
-	"context"
-	"sync"
-)
-
-type Montitor interface {
-	Name() string
-	Check(ctx context.Context) string
-}
+import "sync"
 
 type SystemStats struct {
-	Label string
-	Value string
+	Label   string
+	Value   string
+	IsAlert bool
 }
 
 type ProStat struct {
@@ -24,5 +17,7 @@ type ProStat struct {
 	RunningTime string
 }
 
-var Stats = make(map[string]SystemStats)
-var StatsMutex sync.Mutex
+var (
+	Stats      = make(map[string]SystemStats)
+	StatsMutex sync.Mutex
+)

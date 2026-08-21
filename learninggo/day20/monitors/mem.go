@@ -9,13 +9,22 @@ import (
 
 type MemoryMonitor struct{}
 
-func (m *MemoryMonitor) Name() string { return "MEM" }
+// ✅ FIX 1: Hàm Name chỉ trả về string (không có bool)
+func (m *MemoryMonitor) Name() string {
+	return "MEM"
+}
 
-func (m *MemoryMonitor) Check(ctx context.Context) string {
-	v, err := mem.VirtualMemoryWithContext(ctx)
+func (m *MemoryMonitor) Check(ctx context.Context) (string, bool) {
+	// ✅ FIX 2: Đổi tên biến từ 'v' thành 'vmStat' cho đồng bộ bên dưới
+	vmStat, err := mem.VirtualMemoryWithContext(ctx)
+
 	if err != nil {
-		return fmt.Sprintf("[Memory Top Processes] Cloud not retrieve Memory info: %v \n", err)
+		// ✅ FIX 3: Thêm ', false' để đủ 2 giá trị trả về (string, bool)
+		return fmt.Sprintf("[Memory Monitor] Could not retrieve Memory info: %v \n", err), false
 	}
 
-	return fmt.Sprintf("%.2f%%", v.UsedPercent)
+	// Bây giờ vmStat đã tồn tại nên dòng này sẽ hết lỗi đỏ
+	value := fmt.Sprintf("%.2f%%", vmStat.UsedPercent)
+
+	return value, vmStat.UsedPercent > 60
 }

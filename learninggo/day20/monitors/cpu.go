@@ -9,7 +9,7 @@ import (
 )
 
 type Monitor interface {
-	Check(ctx context.Context) string
+	Check(ctx context.Context) (string, bool)
 	Name() string
 }
 
@@ -17,10 +17,13 @@ type CPUMonitor struct{}
 
 func (m *CPUMonitor) Name() string { return "CPU" }
 
-func (m *CPUMonitor) Check(ctx context.Context) string {
-	percent, err := cpu.PercentWithContext(ctx, time.Second, false)
-	if err != nil || len(percent) == 0 {
-		return fmt.Sprintf("[CPU Monitor] Cloud not retrieve CPU info: %v \n", err)
+func (m *CPUMonitor) Check(ctx context.Context) (string, bool) {
+	cpuStat, err := cpu.PercentWithContext(ctx, 1*time.Second, false)
+	if err != nil || len(cpuStat) == 0 {
+		return fmt.Sprintf("[CPU Monitor] Could not retrieve CPU info: %v \n", err), false
 	}
-	return fmt.Sprintf("%.2f%%", percent[0])
+
+	value := fmt.Sprintf("%.2f%%", cpuStat[0])
+
+	return value, cpuStat[0] > 60
 }

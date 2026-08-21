@@ -97,3 +97,39 @@ Hiển thị danh sách các ứng dụng sử dụng CPU
  Lọc và truyền dữ liệu theo điều kiện CPU lớn hơn 5% hoặc RAM lớn hơn 5%
  Sắp xếp danh sách các tiến trình tiêu tốn nhiều CPU và RAM nhất
  Hiển thị danh sách top 5 tiến trình tiêu tốn CPU và RAM nhiều nhất
+
+ 
+## Video 96
+- todo 
+Tối ưu ứng dụng và cập nhật code
+Giải thích cách sử dụng channel có buffer trong Golang và khi nào có thể bỏ buffer để tối ưu.
+Loại bỏ biến không cần thiết (mch) để code gọn và hiệu quả hơn.
+Cách xử lý return và continue trong vòng lặp để đảm bảo an toàn và logic rõ ràng.
+Sử dụng vòng lặp for range để duyệt map và slice hiệu quả hơn, thay thế cho vòng for i.
+So sánh kết quả giữa code cũ và code tối ưu, đảm bảo tính chính xác và hiệu suất.
+Giải thích lý do tại sao CPU sử dụng lại có thể tăng đột biến do việc tạo nhiều goroutine.
+Một số gợi ý tối ưu thêm khi xử lý nhiều goroutine để giảm tải hệ thống.
+
+## Video 97
+- todo 
+Export toàn bộ danh sách ứng dụng vào CSV file
+Hiển thị danh sách các ứng dụng sử dụng CPU và RAM cao nhất
+Xây dựng hàm xuất dữ liệu sang file CSV trong Golang
+Giải thích chi tiết các thao tác mở file, quyền truy cập, và định dạng CSV
+Cách xử lý lỗi khi thao tác file trong Golang
+Giải thích quyền truy cập file (chmod 0644) trong hệ điều hành Unix/Linux
+Mã nguồn chi tiết và dễ hiểu
+
+- Cài đặt bảng CSV để xem các cột Pid, Name, CPU... thẳng hàng và chuyên nghiệp hơn 
+
+## Video 98
+- todo 
+Thông báo vào CSV file nếu CPU, RAM, Disk vượt ngưỡng cho phép 
+Giới thiệu chức năng giám sát tài nguyên hệ thống bằng Golang
+Lưu trữ thông tin sử dụng CPU, Memory, Disk vào file CSV
+Thiết lập ngưỡng cảnh báo tài nguyên (CPU lớn hơn 60%, Memory lớn hơn 80%, Disk lớn hơn 60%)
+Gửi cảnh báo khi vượt ngưỡng qua nhiều kênh (Telegram, Email, CSV)
+Xử lý đồng thời với goroutines, channel giúp tăng hiệu suất
+Viết log cảnh báo chuẩn và tối ưu ghi file an toàn
+Giải thích chi tiết từng đoạn code, cách debug và xử lý lỗi
+Hướng dẫn chạy thử và kiểm tra kết quả thực tế
