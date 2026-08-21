@@ -78,7 +78,6 @@ func GetTopProcesses(ctx context.Context) {
 	printTop5(procList)
 }
 
-// Hàm hỗ trợ in định dạng đẹp như ảnh mẫu
 func printTop5(list []models.ProStat) {
 	for i := 0; i < 5 && i < len(list); i++ {
 		p := list[i]

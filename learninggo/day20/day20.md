@@ -87,3 +87,13 @@ Dấu [...]: Thông số tổng thể (Sức khỏe toàn diện của máy).
 Dấu {...}: Thông số chi tiết (Từng ứng dụng đang làm gì, chạy bao lâu).
 PHẦN 5: TỔNG KẾT & MỞ RỘNG (14 - 15 PHÚT)
 Kết quả: Dự án đã vận hành thành công một bộ máy thu thập dữ liệu phức tạp, an toàn và linh hoạt.
+
+## Video 95
+- todo 
+Hiển thị danh sách các ứng dụng sử dụng CPU
+ Tổng quan về channel trong Golang và cách tạo channel có buffer
+ Sử dụng goroutine để nhận và gửi dữ liệu qua channel
+ Cách đóng channel đúng cách và tránh deadlock
+ Lọc và truyền dữ liệu theo điều kiện CPU lớn hơn 5% hoặc RAM lớn hơn 5%
+ Sắp xếp danh sách các tiến trình tiêu tốn nhiều CPU và RAM nhất
+ Hiển thị danh sách top 5 tiến trình tiêu tốn CPU và RAM nhiều nhất
