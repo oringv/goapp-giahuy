@@ -56,7 +56,7 @@ Xuất thông tin sang main.go để xử lý bên ngoài
 - PID Là số tiến trình chạy trên hệ thống 
 - Mutex dùng để cho an toàn
   
-  PHẦN 1: ĐẶT VẤN ĐỀ & MỤC TIÊU (0 - 3 PHÚT)
+  PHẦN 1: ĐẶT VẤN ĐỀ & MỤC TIÊU 
 Giới thiệu: Đây là dự án "Hệ thống Giám sát Tài nguyên Thời gian thực". Ý tưởng bắt nguồn từ việc cần theo dõi sức khỏe máy tính một cách liên tục mà không gây treo máy.
 Vấn đề: Các thông số như CPU, RAM, Mạng lấy dữ liệu với tốc độ khác nhau. Nếu chạy tuần tự (hết việc này mới đến việc kia), giao diện sẽ bị đứng và số liệu không chính xác.
 Mục tiêu:
@@ -133,3 +133,55 @@ Xử lý đồng thời với goroutines, channel giúp tăng hiệu suất
 Viết log cảnh báo chuẩn và tối ưu ghi file an toàn
 Giải thích chi tiết từng đoạn code, cách debug và xử lý lỗi
 Hướng dẫn chạy thử và kiểm tra kết quả thực tế
+
+KỊCH BẢN CHI TIẾT: QUẢN TRỊ DỮ LIỆU ĐA LUỒNG VỚI MAP & MUTEX TRONG GOLANG
+PHẦN 1: DẪN NHẬP - BÀI TOÁN QUẢN LÝ DỮ LIỆU THỜI GIAN THỰC 
+1. Lời chào và bối cảnh:
+"Chào mọi người, trong kỷ nguyên số, dữ liệu không chỉ cần lớn (Big Data) mà còn phải nhanh (Fast Data). Hãy tưởng tượng bạn đang quản lý một hệ thống ngân hàng hoặc một sàn chứng khoán, thông tin thay đổi từng mili giây. Làm sao để lưu trữ và truy xuất nó tức thời?"
+2. Tại sao lại là Map? (Phân tích cấu trúc dữ liệu):
+So sánh Slice vs Map:
+Với Slice, bạn phải duyệt từ đầu đến cuối (O(n)) để tìm xem "CPU" đang ở đâu.
+Với Map, bạn tìm thông tin theo từ khóa (Key). Độ phức tạp là O(1) - tức là tìm 1 nhãn hay 1 triệu nhãn thì tốc độ vẫn nhanh như nhau.
+Thiết kế Struct SystemStats: Giải thích về việc đóng gói dữ liệu gồm: Tên nhãn, Giá trị đo được, và Trạng thái báo động. Đây là cách tiếp cận hướng đối tượng trong Go.
+PHẦN 2: "TỬ HUYỆT" CỦA MAP TRONG MÔI TRƯỜNG ĐA LUỒNG 
+1. Bản chất của Concurrency trong Go:
+"Go cho phép chúng ta tạo ra hàng ngàn Goroutine cực nhẹ. Nhưng sức mạnh này mang theo một hiểm họa: Race Condition (Xung đột tài nguyên)."
+2. Tại sao Map lại sập? (Deep Dive):
+Giải thích kỹ thuật: Map trong Go không được thiết kế để chịu tải ghi đồng thời (Not thread-safe). Khi 2 luồng cùng ghi vào 1 ô nhớ, cấu trúc nội bộ của Map sẽ bị phá vỡ. Go chọn cách "tự sát" (Panic) thay vì cho phép dữ liệu bị sai lệch.
+Đây là triết lý của Go: "Sai thà chết còn hơn sai mà không biết".
+3. Giải pháp Mutex - "Người bảo vệ thầm lặng":
+Phân tích cơ chế sync.Mutex:
+Lock(): Chiếm quyền kiểm soát tuyệt đối.
+Unlock(): Trả tự do cho tài nguyên.
+Nhấn mạnh: "Mutex không làm cho Map chạy nhanh hơn, nhưng nó làm cho Map chạy SỐNG SÓT trong môi trường đa luồng."
+PHẦN 3: DÒNG CHẢY DỮ LIỆU - TỪ CẢM BIẾN ĐẾN KHO LƯU TRỮ 
+1. Sự phối hợp giữa Channel và Map:
+Phân tích dòng code: for stat := range statCh { ... }
+"Channel đóng vai trò là Đường vận chuyển. Map đóng vai trò là Nhà kho. Dữ liệu từ các bộ cảm biến (Monitors) được đóng gói và ném vào đường ống. Một Goroutine duy nhất ở đầu kia sẽ nhặt từng món và xếp vào kho."
+2. Tại sao lại dùng 1 Goroutine duy nhất để cập nhật Map?
+Đây là một kỹ thuật tối ưu. Thay vì để 4-5 ông monitor cùng tranh nhau cái khóa Mutex, ta cho một ông "thủ kho" duy nhất làm nhiệm vụ ghi. Điều này giảm thiểu thời gian chờ (Contention) và giúp hệ thống mượt mà hơn.
+3. Tối ưu hóa Channel có Buffer (Video 96):
+Giải thích về việc cấp "kho đệm" cho channel. Nếu nhà kho (Map) bận xử lý, đường ống (Channel) vẫn có thể chứa thêm vài kiện hàng, giúp các bộ đo không bị đứng hình.
+PHẦN 4: KHAI THÁC DỮ LIỆU TỪ MAP - TOP 5 & EXPORT
+1. Xuất bản báo cáo với Ticker:
+"Hệ thống không in dữ liệu vô tội vạ. Nhịp đập time.Ticker 5 giây giúp dữ liệu trong Map có thời gian 'lắng đọng' trước khi được xuất bản."
+2. Bài toán sắp xếp (Sorting) - (Video 95):
+"Dữ liệu trong Map là lộn xộn. Để tìm được Top 5, ta phải đổ dữ liệu từ Map ra một Slice trung gian, sau đó dùng sort.Slice để đưa những kẻ ngốn tài nguyên nhất lên đầu."
+3. Persistence (Lưu trữ bền vững) - (Video 97 & 98):
+Lấy dữ liệu từ Map để ghi vào CSV.
+Cơ chế Alert: "Khi duyệt Map, nếu IsAlert == true, hệ thống sẽ kích hoạt hàm LogAlert. Đây là sự kết hợp hoàn hảo giữa Giám sát (Monitoring) và Phản ứng (Alerting)."
+PHẦN 5: TỔNG KẾT & BÀI HỌC KINH NGHIỆM 
+1. Những gì chúng ta đã đạt được:
+Một hệ thống đa luồng an toàn tuyệt đối nhờ Mutex.
+Khả năng truy xuất dữ liệu nhờ Map.
+Hệ thống lưu trữ lịch sử và cảnh báo chuyên nghiệp.
+
+1. Tầng Monitors (Cảm biến): Tính mở rộng tuyệt vời
+Tại sao chuẩn:tách riêng cpu.go, disk.go, mem.go, net.go. Đây là cách thiết kế theo Single Responsibility Principle (Nguyên tắc đơn trách nhiệm).
+ "Nếu sau này tôi muốn đo thêm nhiệt độ GPU, tôi chỉ cần tạo thêm file gpu.go trong package monitors mà không cần chạm vào bất kỳ dòng code nào của CPU hay RAM. Điều này giúp hệ thống cực kỳ an toàn và dễ bảo trì."
+2. Tầng Models (Dữ liệu): Sự tập trung và bảo mật
+Toàn bộ Struct và Map/Mutex vào đây. Đây là "nguồn sự thật duy nhất" (Single Source of Truth).
+ "Mọi dữ liệu trong hệ thống đều phải tuân thủ khuôn mẫu từ tầng models. Việc tập trung Mutex tại đây giúp tôi kiểm soát được mọi luồng truy cập dữ liệu, đảm bảo không bao giờ xảy ra xung đột (Race Condition) dù có hàng nghìn Goroutine chạy cùng lúc."
+3. Tầng Processor (Xử lý): Tách biệt Logic và Giao diện
+Tại sao chuẩn: tách riêng logic sắp xếp Top 5 và ghi file CSV/Log ra khỏi hàm main.
+ "Hàm main của tôi chỉ đóng vai trò là 'Người nhạc trưởng' để khởi động hệ thống. Mọi logic tính toán phức tạp hay thao tác với ổ đĩa đều được tầng processor đảm nhận. Nếu tôi muốn thay đổi cách ghi file từ CSV sang Database, tôi chỉ cần sửa ở tầng này."
