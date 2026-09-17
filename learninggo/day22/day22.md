@@ -22,5 +22,6 @@ URL, Path, Path Param và Query Param - Làm chủ Các Thành Phần của Endp
 URL (Uniform Resource Locator) là địa chỉ của một tài nguyên trên web, giống như địa chỉ nhà giúp bạn tìm đúng nơi cần đến.
 Trong API, URL được dùng để xác định hành động (như lấy dữ liệu, tạo mới, sửa, xóa...) và tài nguyên (thành viên, sản phẩm).
 
-Các thành phần chính của URL, xác định tài nguyên hoặc hành động mà API xử lý. Nó thường là đường dẫn sau domain.
+Các thành phần chính của URL trong endpoint
+Endpoint là phần chính của URL, xác định tài nguyên hoặc hành động mà API xử lý. Nó thường là đường dẫn sau domain.
 
