@@ -29,5 +29,19 @@ func main() {
 		ctx.JSON(200, gin.H{"data": "Danh sach san pham"})
 	})
 
+	r.GET("/product/:product_name", func(ctx *gin.Context) {
+		product_name := ctx.Param("product_name")
+
+		price := ctx.Query("price")
+		color := ctx.Query("color")
+
+		ctx.JSON(200, gin.H{
+			"data":          "Thong tin san pham",
+			"product_name":  product_name,
+			"product_price": price,
+			"color":         color,
+		})
+	})
+
 	r.Run(":8080")
 }
